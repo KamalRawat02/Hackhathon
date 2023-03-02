@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
-import {Button, StyleSheet, TextInput, View, Alert, Text} from 'react-native';
+import {Button, StyleSheet, TextInput, View, Text} from 'react-native';
 import auth from '@react-native-firebase/auth';
 
-const SignUpScreen = ({navigation}) => {
+const LogInScreen = ({navigation}: any) => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const [emailError, setEmailError] = useState(false);
   const [passError, setPassError] = useState(false);
   const [emailMessage, setEmailMesage] = useState('');
   const [passMessage, setPassMessage] = useState('');
-  const [message, setMessage] = useState('');
-  const handleSignIn = async () => {
+  //   const [message, setMessage] = useState('');
+  const handleLogIn = async () => {
     let res = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
     if (email === '') {
       setEmailError(true);
@@ -22,7 +22,7 @@ const SignUpScreen = ({navigation}) => {
       setPassError(true);
       setEmailError(false);
       setEmailMesage('');
-      setPassMessage('* Please Set a Password');
+      setPassMessage('* Please Enter Password');
     } else if (pass.length < 6) {
       setEmailMesage('');
       setEmailError(false);
@@ -34,7 +34,7 @@ const SignUpScreen = ({navigation}) => {
       console.log('hii');
       //   navigation.navigate('Dashboard');
       try {
-        const isUserCreated = await auth().createUserWithEmailAndPassword(
+        const isUserCreated = await auth().signInWithEmailAndPassword(
           email,
           pass,
         );
@@ -59,11 +59,7 @@ const SignUpScreen = ({navigation}) => {
         placeholder="useless placeholder"
       />
       {passError ? <Text>{passMessage}</Text> : null}
-      <Button title="Submit" onPress={() => handleSignIn()} />
-      <Button
-        title="Log In"
-        onPress={() => navigation.navigate('LogInScreen')}
-      />
+      <Button title="Submit" onPress={() => handleLogIn()} />
     </View>
   );
 };
@@ -77,4 +73,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignUpScreen;
+export default LogInScreen;
