@@ -6,20 +6,18 @@
  */
 
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import RootNavigator from './src/navigation/RootNavigator';
 
 function App(): JSX.Element {
   return (
-    <SafeAreaView>
-      <Text style={styles.highlight}>First screen</Text>
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <RootNavigator />
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  highlight: {
-    fontSize: 26,
-  },
-});
 
 export default App;
