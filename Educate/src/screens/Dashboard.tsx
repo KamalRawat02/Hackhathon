@@ -95,7 +95,8 @@ const Dashboard = ({navigation}) => {
             }}>
             <Feather name={'bell'} size={27} color={'black'} />
           </View>
-          <View
+          <TouchableOpacity
+            onPress={undefined}
             style={{
               flex: 0.3,
               //backgroundColor: 'green',
@@ -103,7 +104,7 @@ const Dashboard = ({navigation}) => {
               alignItems: 'center',
             }}>
             <Octicons name={'three-bars'} size={27} color={'black'} />
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
       <View style={{flex: 0.25}}>

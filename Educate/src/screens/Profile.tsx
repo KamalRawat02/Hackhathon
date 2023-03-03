@@ -3,10 +3,14 @@ import {View, StyleSheet, TextInput} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import {Button} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 const Profile = () => {
   const [name, setName] = useState('');
   const [enrol, setEnrol] = useState('');
   const [phone, setPhone] = useState('');
+  const [age, setAge] = useState('');
+  const [branch, setBranch] = useState('');
+  const [course, setCourse] = useState('');
   const ID = auth().currentUser?.uid;
   console.log(ID);
   const handleSubmit = async () => {
@@ -14,8 +18,14 @@ const Profile = () => {
       name: name,
       enrollment: enrol,
       phone: phone,
+      course: course,
+      branch: branch,
     };
     await firestore().collection('Users').doc(ID).set(response);
+  };
+  const temp = async () => {
+    const apk = await firestore().collection('Users').doc(ID).get();
+    console.log(apk);
   };
   return (
     <View style={{flex: 1}}>
@@ -37,7 +47,20 @@ const Profile = () => {
         value={phone}
         placeholder={'Phone No.'}
       />
+      <TextInput
+        style={styles.input}
+        onChangeText={value => setCourse(value)}
+        value={course}
+        placeholder={'Course'}
+      />
+      <TextInput
+        style={styles.input}
+        onChangeText={value => setBranch(value)}
+        value={branch}
+        placeholder={'Branch'}
+      />
       <Button title="Submit" onPress={() => handleSubmit()} />
+      {/* <Button title="GET" onPress={() => temp()} /> */}
     </View>
   );
 };
