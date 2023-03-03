@@ -15,6 +15,7 @@ import auth from '@react-native-firebase/auth';
 import ButtonFormat from '../components/ButtonFormate';
 import CustomInput from '../components/CustomInput';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const SignUpScreen = ({navigation}) => {
   const [vivi, setVivi] = useState(false);
@@ -119,13 +120,13 @@ const SignUpScreen = ({navigation}) => {
                 heading={'Password'}
                 value={pass}
                 onChangeText={value => setPass(value)}
-                // leftIconType={
-                //   <MaterialCommunityIcons
-                //     name={'lock-open-outline'}
-                //     size={24}
-                //     color={'black'}
-                //   />
-                // }
+                leftIconType={
+                  <MaterialCommunityIcons
+                    name={'lock-open-outline'}
+                    size={24}
+                    color={'black'}
+                  />
+                }
                 secureTextEntry={vivi}
                 // rightIconType={
                 //   <Ionicons name={'eye-off'} size={20} color={'black'} />
