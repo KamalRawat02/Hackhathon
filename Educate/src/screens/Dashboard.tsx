@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -16,9 +16,14 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Task from '../components/Task';
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
+
 const Dashboard = ({navigation}) => {
   const [task, setTask] = useState('');
   const [taskItems, setTaskItems] = useState([]);
+  const ID = auth().currentUser?.uid;
+
   const handleAddTask = () => {
     setTaskItems([...taskItems, task]);
     setTask('');
@@ -29,6 +34,30 @@ const Dashboard = ({navigation}) => {
     itemsCopy.splice(index, 1);
     setTaskItems(itemsCopy);
   };
+  useEffect(() => {
+    const data = firestore().collection('Users').doc(ID).get().then;
+    // setTaskItems(data);
+    console.log(data);
+    firestore()
+      .collection('Users')
+      .get()
+      .then(querySnapshot => {
+        // console.log('Total users: ', querySnapshot.size);
+        const data = [];
+        querySnapshot.forEach(documentSnapshot => {
+          console.log(documentSnapshot.data());
+        });
+      });
+  }, []);
+  useEffect(() => {
+    // setData();
+    // async function setData() {
+    const response = {
+      tasks: taskItems,
+    };
+    firestore().collection('Users').doc(ID).set(response);
+    // }
+  }, [taskItems]);
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -76,7 +105,7 @@ const Dashboard = ({navigation}) => {
               fontSize: 25,
               fontWeight: '600',
               marginStart: '5%',
-              marginBottom:'5%'
+              marginBottom: '5%',
             }}>
             Hi, Kate
           </Text>
