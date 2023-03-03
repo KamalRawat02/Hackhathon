@@ -114,6 +114,16 @@ const RootNavigator = () => {
         component={Comment}
         options={{headerShown: false}}
       />
+      <Stack.Screen
+        name="BookResources"
+        component={BookResources}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="VideoResources"
+        component={VideoResources}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 };
