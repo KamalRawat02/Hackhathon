@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SignUpScreen from '../screens/SignUpScreen';
@@ -14,6 +15,8 @@ import Profile from '../screens/Profile';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import VideoResources from '../screens/VideoResources';
 import BookResources from '../screens/BookResources';
+import Comment from '../screens/Comment';
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -106,6 +109,11 @@ const RootNavigator = () => {
       <Stack.Screen
         name="Profile"
         component={Profile}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Comment"
+        component={Comment}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

@@ -1724,9 +1724,9 @@
     "plist" "^3.0.5"
 
 "@react-native-firebase/firestore@^17.3.1":
-  "integrity" "sha512-mPLydK++X2E9lA2qIKYIve/8K7dtyTDrI5Yd4SGbBxRnsjZoNEWT8zwqvhZR4L9pQNjVYfo1Akkp/uIJuJ8t+g=="
-  "resolved" "https://registry.npmjs.org/@react-native-firebase/firestore/-/firestore-17.3.1.tgz"
-  "version" "17.3.1"
+  version "17.3.1"
+  resolved "https://registry.npmjs.org/@react-native-firebase/firestore/-/firestore-17.3.1.tgz"
+  integrity sha512-mPLydK++X2E9lA2qIKYIve/8K7dtyTDrI5Yd4SGbBxRnsjZoNEWT8zwqvhZR4L9pQNjVYfo1Akkp/uIJuJ8t+g==
 
 "@react-native-firebase/storage@^17.3.1":
   "integrity" "sha512-Kfz3OtLbaETXGFefDkSZbMMGym+eYbAoywqNxjFTyPbBTabyQAZ8dRXJUGLMDHhXxyhga4NMrJxB46roDClKIA=="
