@@ -10,7 +10,7 @@ interface propTypes {
 
 const Sslist = (props: propTypes) => {
   return (
-    <View style={{backgroundColor: '#b7d9f6',borderRadius:13}}>
+    <View style={{backgroundColor: '#A9CBFF',borderRadius:13}}>
       <View style={{height: '70%',alignItems:"center",justifyContent:'center'}}>
         <Image
           source={{

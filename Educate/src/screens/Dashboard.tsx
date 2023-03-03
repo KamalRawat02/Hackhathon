@@ -217,11 +217,11 @@ const Dashboard = ({navigation}) => {
             style={{
               height: '80%',
               width: '95%',
-              backgroundColor: '#a4bbda',
+              backgroundColor: '#a9cbff',
               borderRadius: 10,
             }}
             value={task}
-            onChangeText={text => setTask(text)}w
+            onChangeText={text => setTask(text)}
             placeholder="Write Task"
           />
         </View>
