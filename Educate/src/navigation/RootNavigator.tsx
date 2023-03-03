@@ -9,6 +9,7 @@ import Doubts from '../screens/Doubts';
 import Jobs from '../screens/Jobs';
 import Events from '../screens/Events';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Feather from 'react-native-vector-icons/Feather';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -22,14 +23,42 @@ const RootNavigator = () => {
           options={{
             tabBarLabel: 'Home',
             // tabBarc
-            tabBarIcon: ({color, size}) => (
-              <MaterialCommunityIcons name="home" color={'black'} size={20} />
+            tabBarIcon: ({}) => (
+              <Feather name="home" color={'black'} size={20} />
             ),
           }}
         />
-        <Tab.Screen name="Doubts" component={Doubts} />
-        <Tab.Screen name="Jobs" component={Jobs} />
-        <Tab.Screen name="Events" component={Events} />
+        <Tab.Screen
+          name="Doubts"
+          component={Doubts}
+          options={{
+            tabBarLabel: 'Doubts',
+            tabBarIcon: ({}) => (
+              <Feather name="message-square" color={'black'} size={20} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Jobs"
+          component={Jobs}
+          options={{
+            tabBarLabel: 'Jobs',
+            // tabBarc
+            tabBarIcon: ({}) => (
+              <MaterialCommunityIcons name="laptop" color={'black'} size={20} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Events"
+          component={Events}
+          options={{
+            tabBarLabel: 'Events',
+            tabBarIcon: ({}) => (
+              <Feather name="calendar" color={'black'} size={20} />
+            ),
+          }}
+        />
       </Tab.Navigator>
     );
   };
