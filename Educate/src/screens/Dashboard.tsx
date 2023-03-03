@@ -23,8 +23,7 @@ import Task from '../components/Task';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 
-import {BackHandler} from 'react-native/Libraries/Utilities/BackHandler';
-import VideoResources from './VideoResources';
+
 const Dashboard = ({navigation}) => {
   const [task, setTask] = useState('');
   const [taskItems, setTaskItems] = useState([]);
