@@ -20,14 +20,11 @@ import Feather from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Task from '../components/Task';
-<<<<<<< HEAD
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 
-=======
 import {BackHandler} from 'react-native/Libraries/Utilities/BackHandler';
 import VideoResources from './VideoResources';
->>>>>>> d8bd3d86eba1a08fbadcdbb8982bcd34d039cd5d
 const Dashboard = ({navigation}) => {
   const [task, setTask] = useState('');
   const [taskItems, setTaskItems] = useState([]);
