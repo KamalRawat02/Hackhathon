@@ -6,15 +6,14 @@ const GetStarted = ({navigation}) => {
   return (
     <ImageBackground
       style={styles.container}
-      source={require('../assests/splash.png')}
+      source={require('../assests/grad.jpg')}
       resizeMode="cover">
       <View style={styles.upperView}>
         <View style={styles.upperInsideView}>
           <Text style={styles.welcomeText}>Welcome to</Text>
-          <Image
-            source={require('../assests/InWorkLogoWhite.png')}
-            style={styles.logoStyle}
-          />
+          <Text style={{color:'white',fontSize:60,fontWeight:'600'}}>
+            Educate
+          </Text>
           <Image
             source={require('../assests/rafiki.png')}
             style={styles.photostyle}
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
   RegisterBu: {
     height: '38%',
     width: '65%',
-    backgroundColor: '#063a8d',
+    backgroundColor: '#2a66c7',
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
