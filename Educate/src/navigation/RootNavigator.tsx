@@ -10,6 +10,7 @@ import Jobs from '../screens/Jobs';
 import Events from '../screens/Events';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
+import Profile from '../screens/Profile';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -83,6 +84,11 @@ const RootNavigator = () => {
       <Stack.Screen
         name="LogInScreen"
         component={LogInScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
