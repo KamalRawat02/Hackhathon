@@ -12,14 +12,12 @@ import Events from '../screens/Events';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import Profile from '../screens/Profile';
-import {createDrawerNavigator} from '@react-navigation/drawer';
 import VideoResources from '../screens/VideoResources';
 import BookResources from '../screens/BookResources';
 import Comment from '../screens/Comment';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-const Drawer = createDrawerNavigator();
 
 const RootNavigator = () => {
   // const DrawerTab = () => {
