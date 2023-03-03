@@ -44,7 +44,7 @@ const LogInScreen = ({navigation}: any) => {
       setEmailError(false);
       setPassError(false);
       console.log('hii');
-      //   navigation.navigate('Dashboard');
+      navigation.navigate('BottomTabs', {screen: 'Dashboard'});
       try {
         const isUserCreated = await auth().signInWithEmailAndPassword(
           email,
@@ -52,7 +52,7 @@ const LogInScreen = ({navigation}: any) => {
         );
         console.log(isUserCreated);
         // alert('User Created');
-        navigation.navigate('Dashboard');
+        // navigation.navigate('Dashboard');
       } catch (err) {
         console.log(err);
 
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
   logoStyle: {
     width: '95%',
     height: '95%',
-    elevation: 35,
+    // elevation: 35,
   },
   upperView: {flex: 0.3, alignItems: 'center'},
   middleView: {flex: 0.4, alignItems: 'center'},
