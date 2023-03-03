@@ -4,6 +4,8 @@ import SignUpScreen from '../screens/SignUpScreen';
 import Dashboard from '../screens/Dashboard';
 import LogInScreen from '../screens/LogInScreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import GetStarted from '../screens/GetStarted';
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -21,6 +23,11 @@ const RootNavigator = () => {
 
   return (
     <Stack.Navigator>
+      <Stack.Screen
+        name="Getstarted"
+        component={GetStarted}
+        options={{headerShown: false}}
+      />
       <Stack.Screen
         name="SignUpScreen"
         component={SignUpScreen}
