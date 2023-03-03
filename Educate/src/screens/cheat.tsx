@@ -16,62 +16,62 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Book from '../components/Books';
-import Video from '../components/VideoUrl';
+import Road from '../components/Road';
 
-const BookResources = ({navigation}) => {
+const Cheat = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const DATA = [
     {
       id: '1',
-      songname: 'Machine Learning',
+      songname: 'Web Dev',
       imageUrl:
-        'https://www.amazon.in/Hands-Machine-Learning-Scikit-Learn-TensorFlow/dp/9355421982',
-      poet: 'Aurllien sauce',
+        'https://www.codecademy.com/resources/cheatsheets/subject/web-development',
+      low: 'Full Stack Development',
     },
     {
       id: '2',
-      songname: 'Coding Interview',
+      songname: 'ML',
       imageUrl:
-        'https://www.amazon.in/Cracking-Coding-Interview-Programing-Questions/dp/0984782850',
-        poet: 'Gayle Laakmaan',
+        'https://ml-cheatsheet.readthedocs.io/',
+      low: 'Machine Learning',
     },
     {
       id: '3',
-      songname: 'Alorithum',
+      songname: 'Data Analysis',
       imageUrl:
-        'https://mitpress.mit.edu/9780262533058/introduction-to-algorithms/',
-        poet: 'MIT Press',
-      },
+        'https://www.kaggle.com/getting-started/167694',
+      low: 'Data Operation',
+    },
     {
       id: '4',
-      songname: 'Let Us C',
+      songname: 'MERN',
       imageUrl:
-        'https://www.amazon.in/Let-Us-C-Yashavant-Kanetkar/dp/8183331637',
-        poet: 'YashWant kanetkar',
+        'https://dev.to/thamaraiselvam/mean-stack-cheat-sheet-5a1n',
+      low: 'Full Stack Development',
     },
     {
       id: '5',
-      songname: 'Python Programming',
+      songname: 'DSA',
       imageUrl:
-        'https://www.amazon.in/b?ie=UTF8&node=14447053031',
-        poet: 'J.K Rolling',
+        'https://cheatography.com/burcuco/cheat-sheets/data-structures-and-algorithms/',
+      low: 'Data Sctructure',
     },
     {
       id: '6',
-      songname: 'Think like a programmer',
+      songname: 'MEAN',
       imageUrl:
-        'https://www.amazon.in/Think-Like-Programmer-Introduction-Creative/dp/1593274246',
-        poet: 'Dr.Chinmay Pathak',
-      },
+        'https://morioh.com/p/7045903b810e',
+      low: 'Full Stack Deveklopment',
+    },
   ];
   const renderItem2 = ({item}) => {
     return (
       <View style={styles.cardView2}>
-        <Book
+        <Road
           songname={item.songname}
           navigation={undefined}
           imageUrl={item.imageUrl}
-          poet={item.poet}
+          low={item.low}
         />
       </View>
     );
@@ -233,29 +233,6 @@ const BookResources = ({navigation}) => {
                 </View>
               </TouchableOpacity>
             </View>
-            <View
-              style={{
-                flex: 0.1,
-                // backgroundColor: 'blue',
-              }}>
-              <TouchableOpacity
-                onPress={async () => {
-                  await Auth().signOut();
-                  navigation.dispatch(StackActions.replace('SignUpScreen'));
-                  // navigation.navigate('Login');
-                }}>
-                <Text
-                  style={{
-                    color: 'gray',
-                    fontSize: 20,
-                    fontWeight: '500',
-                    marginStart: '6%',
-                    marginTop: '3%',
-                  }}>
-                  Log Out
-                </Text>
-              </TouchableOpacity>
-            </View>
           </View>
         </View>
       </Modal>
@@ -339,15 +316,16 @@ const BookResources = ({navigation}) => {
             marginStart: '3%',
             color: '#343333',
           }}>
-          Books to Refer,
+          Roadmaps,
         </Text>
         <Text style={{marginStart: '4%', fontSize: 11, color: '#343333'}}>
-          Good Books can make your brain work,
+          Road that Guide you for Better,
         </Text>
       </View>
       <View style={{flex: 0.85}}>
         <FlatList
           data={DATA}
+          //numColumns={2}
           renderItem={renderItem2}
           keyExtractor={item => item.id}
         />
@@ -356,7 +334,7 @@ const BookResources = ({navigation}) => {
   );
 };
 
-export default BookResources;
+export default Cheat;
 const styles = StyleSheet.create({
   container: {
     flex: 1,

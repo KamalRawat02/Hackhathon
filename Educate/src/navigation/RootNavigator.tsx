@@ -15,6 +15,8 @@ import Profile from '../screens/Profile';
 import VideoResources from '../screens/VideoResources';
 import BookResources from '../screens/BookResources';
 import Comment from '../screens/Comment';
+import Roadmaps from '../screens/Roadmap';
+import Cheat from '../screens/cheat';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -122,6 +124,16 @@ const RootNavigator = () => {
       <Stack.Screen
         name="VideoResources"
         component={VideoResources}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Roadmaps"
+        component={Roadmaps}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Cheat"
+        component={Cheat}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
