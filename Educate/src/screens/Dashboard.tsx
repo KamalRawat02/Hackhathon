@@ -53,12 +53,14 @@ const Dashboard = ({navigation}) => {
                 justifyContent: 'center',
                 alignContent: 'center',
               }}>
-              <Image
-                source={{
-                  uri: 'https://reactnative.dev/img/tiny_logo.png',
-                }}
-                style={styles.logoStyle}
-              />
+              <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+                <Image
+                  source={{
+                    uri: 'https://reactnative.dev/img/tiny_logo.png',
+                  }}
+                  style={styles.logoStyle}
+                />
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -282,6 +284,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   Item: {
-    marginHorizontal:'5%'
+    marginHorizontal: '5%',
   },
 });
