@@ -23,37 +23,37 @@ const VideoResources = ({navigation}) => {
       id: '1',
       songname: 'Python Tutorial For Beginners in hindi',
       imageUrl:
-        'https://www.simplilearn.com/ice9/free_resources_article_thumb/c-for-loop.JPG',
+        'https://www.youtube.com/watch?v=gfDE2a7MKjAG',
     },
     {
       id: '2',
       songname: 'MySql Tutorail for Beginners [Full Couser]',
       imageUrl:
-        'https://linuxhint.com/wp-content/uploads/2021/09/Programming-examples-cpp-02.png',
+        'https://www.youtube.com/watch?v=7S_tz1z_5bA',
     },
     {
       id: '3',
       songname: 'Git in 1 hour',
       imageUrl:
-        'https://www.tutorialgateway.org/wp-content/uploads/C-Program-to-Calculate-Profit-or-Loss-1-1.png?ezimgfmt=ng:webp/ngcb214',
+        'https://www.youtube.com/watch?v=8JJ101D3knE',
     },
     {
       id: '4',
       songname: 'Learn C++ in One Shot',
       imageUrl:
-        'https://www.simplilearn.com/ice9/free_resources_article_thumb/c-for-loop.JPG',
+        'https://www.youtube.com/watch?v=EAR7De6Goz4',
     },
     {
       id: '5',
       songname: 'Java Script in one shot',
       imageUrl:
-        'https://linuxhint.com/wp-content/uploads/2021/09/Programming-examples-cpp-02.png',
+        'https://www.youtube.com/watch?v=W6NZfCO5SIk',
     },
     {
       id: '6',
       songname: 'React Native in One shot',
       imageUrl:
-        'https://www.tutorialgateway.org/wp-content/uploads/C-Program-to-Calculate-Profit-or-Loss-1-1.png?ezimgfmt=ng:webp/ngcb214',
+        'https://www.youtube.com/watch?v=0-S5a0eXPoc',
     },
   ];
   const renderItem2 = ({item}) => {
@@ -178,7 +178,7 @@ const VideoResources = ({navigation}) => {
                   </Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('Roadmaps')}>
                 <View
                   style={{
                     height: 40,
@@ -201,7 +201,7 @@ const VideoResources = ({navigation}) => {
                   </Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('Cheat')}>
                 <View
                   style={{
                     height: 40,

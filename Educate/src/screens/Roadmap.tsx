@@ -16,62 +16,63 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Book from '../components/Books';
+import Road from '../components/Road';
 import Video from '../components/VideoUrl';
 
-const BookResources = ({navigation}) => {
+const Roadmaps = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const DATA = [
     {
       id: '1',
-      songname: 'Machine Learning',
+      songname: 'Web Dev',
       imageUrl:
-        'https://www.amazon.in/Hands-Machine-Learning-Scikit-Learn-TensorFlow/dp/9355421982',
-      poet: 'Aurllien sauce',
+        'https://www.simplilearn.com/ice9/free_resources_article_thumb/c-for-loop.JPG',
+      low: 'Full Stack Development',
     },
     {
       id: '2',
-      songname: 'Coding Interview',
+      songname: 'ML',
       imageUrl:
-        'https://www.amazon.in/Cracking-Coding-Interview-Programing-Questions/dp/0984782850',
-        poet: 'Gayle Laakmaan',
+        'https://linuxhint.com/wp-content/uploads/2021/09/Programming-examples-cpp-02.png',
+      low: 'Machine Learning',
     },
     {
       id: '3',
-      songname: 'Alorithum',
+      songname: 'Data Analysis',
       imageUrl:
-        'https://mitpress.mit.edu/9780262533058/introduction-to-algorithms/',
-        poet: 'MIT Press',
-      },
+        'https://www.tutorialgateway.org/wp-content/uploads/C-Program-to-Calculate-Profit-or-Loss-1-1.png?ezimgfmt=ng:webp/ngcb214',
+      low: 'Data Operation',
+    },
     {
       id: '4',
-      songname: 'Let Us C',
+      songname: 'MERN',
       imageUrl:
-        'https://www.amazon.in/Let-Us-C-Yashavant-Kanetkar/dp/8183331637',
-        poet: 'YashWant kanetkar',
+        'https://www.simplilearn.com/ice9/free_resources_article_thumb/c-for-loop.JPG',
+      low: 'Full Stack Development',
     },
     {
       id: '5',
-      songname: 'Python Programming',
+      songname: 'DSA',
       imageUrl:
-        'https://www.amazon.in/b?ie=UTF8&node=14447053031',
-        poet: 'J.K Rolling',
+        'https://linuxhint.com/wp-content/uploads/2021/09/Programming-examples-cpp-02.png',
+      low: 'Data Sctructure',
     },
     {
       id: '6',
-      songname: 'Think like a programmer',
+      songname: 'MEAN',
       imageUrl:
-        'https://www.amazon.in/Think-Like-Programmer-Introduction-Creative/dp/1593274246',
-        poet: 'Dr.Chinmay Pathak',
-      },
+        'https://www.tutorialgateway.org/wp-content/uploads/C-Program-to-Calculate-Profit-or-Loss-1-1.png?ezimgfmt=ng:webp/ngcb214',
+      low: 'Full Stack Deveklopment',
+    },
   ];
   const renderItem2 = ({item}) => {
     return (
       <View style={styles.cardView2}>
-        <Book
+        <Road
           songname={item.songname}
           navigation={undefined}
           imageUrl={item.imageUrl}
-          poet={item.poet}
+          low={item.low}
         />
       </View>
     );
@@ -339,15 +340,16 @@ const BookResources = ({navigation}) => {
             marginStart: '3%',
             color: '#343333',
           }}>
-          Books to Refer,
+          Roadmaps,
         </Text>
         <Text style={{marginStart: '4%', fontSize: 11, color: '#343333'}}>
-          Good Books can make your brain work,
+          Road that Guide you for Better,
         </Text>
       </View>
       <View style={{flex: 0.85}}>
         <FlatList
           data={DATA}
+          //numColumns={2}
           renderItem={renderItem2}
           keyExtractor={item => item.id}
         />
@@ -356,7 +358,7 @@ const BookResources = ({navigation}) => {
   );
 };
 
-export default BookResources;
+export default Roadmaps;
 const styles = StyleSheet.create({
   container: {
     flex: 1,

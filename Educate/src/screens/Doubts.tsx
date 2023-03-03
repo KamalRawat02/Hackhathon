@@ -184,7 +184,7 @@ const Doubts = ({navigation}) => {
                   </Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('Roadmaps')}>
                 <View
                   style={{
                     height: 40,
@@ -207,7 +207,7 @@ const Doubts = ({navigation}) => {
                   </Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('Cheat')}>
                 <View
                   style={{
                     height: 40,
