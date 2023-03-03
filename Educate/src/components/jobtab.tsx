@@ -13,7 +13,7 @@ interface propTypes {
 
 const Joblist = (props: propTypes) => {
   return (
-    <View style={{backgroundColor: '#A9CBFF', borderRadius: 13, height: 150}}>
+    <View style={{backgroundColor: '#cddef8', borderRadius: 13, height: 150}}>
       <View style={{marginStart: 6, marginTop: 4}}>
         <Text style={{color: 'black', fontSize: 17, fontWeight: '500'}}>
           {props.title}
