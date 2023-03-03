@@ -7,6 +7,9 @@ import {
   StyleSheet,
   ScrollView,
   TextInput,
+  Alert,
+  Modal,
+  Pressable,
 } from 'react-native';
 import Auth from '@react-native-firebase/auth';
 import {useNavigation, StackActions} from '@react-navigation/native';
@@ -14,11 +17,17 @@ import {KeyboardAvoidingView} from 'react-native';
 import {Image, ScreenWidth} from '@rneui/base';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Feather from 'react-native-vector-icons/Feather';
+import Entypo from 'react-native-vector-icons/Entypo';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Task from '../components/Task';
+<<<<<<< HEAD
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 
+=======
+import {BackHandler} from 'react-native/Libraries/Utilities/BackHandler';
+import VideoResources from './VideoResources';
+>>>>>>> d8bd3d86eba1a08fbadcdbb8982bcd34d039cd5d
 const Dashboard = ({navigation}) => {
   const [task, setTask] = useState('');
   const [taskItems, setTaskItems] = useState([]);
@@ -58,11 +67,191 @@ const Dashboard = ({navigation}) => {
     firestore().collection('Users').doc(ID).set(response);
     // }
   }, [taskItems]);
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <KeyboardAvoidingView
       style={styles.container}
       behavior="height"
       enabled={false}>
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setModalVisible(!modalVisible);
+        }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <View style={{flex: 0.05}}>
+              <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
+                <Entypo name={'cross'} size={35} color={'black'} />
+              </TouchableOpacity>
+            </View>
+            <View style={{flex: 0.3, marginTop: '5%'}}>
+              <Text
+                style={{
+                  color: 'black',
+                  fontSize: 20,
+                  fontWeight: '600',
+                  marginStart: '2%',
+                }}>
+                Time Table
+              </Text>
+
+              <Text style={{marginStart: '2%'}}>Let's Organize Yourself,</Text>
+              <View
+                style={{
+                  height: '70%',
+                  width: '85%',
+                  //backgroundColor: 'red',
+                  marginHorizontal: '7.5%',
+                  marginVertical: '5%',
+                  borderRadius: 10,
+                }}>
+                <Image
+                  source={require('../assests/time.png')}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: 10,
+                    //marginTop: 3,
+                  }}
+                />
+              </View>
+            </View>
+            <View style={{flex: 0.4, marginTop: '5%'}}>
+              <Text
+                style={{
+                  fontSize: 22,
+                  fontWeight: '600',
+                  color: 'black',
+                  marginHorizontal: '5%',
+                  marginTop: '5%',
+                }}>
+                Resouces
+              </Text>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('VideoResources')}>
+                <View
+                  style={{
+                    height: 40,
+                    width: 220,
+                    backgroundColor: '#c0cdde',
+                    marginHorizontal: '10%',
+                    marginTop: '5%',
+                    borderRadius: 10,
+                  }}>
+                  <Text
+                    style={{
+                      fontSize: 14,
+                      fontWeight: '600',
+                      marginStart: '5%',
+                    }}>
+                    Video Resources
+                  </Text>
+                  <Text style={{fontSize: 8, marginStart: '5%'}}>
+                    Video to help you grow
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('BookResources')}>
+                <View
+                  style={{
+                    height: 40,
+                    width: 220,
+                    backgroundColor: '#c0cdde',
+                    marginHorizontal: '10%',
+                    marginTop: '5%',
+                    borderRadius: 10,
+                  }}>
+                  <Text
+                    style={{
+                      fontSize: 14,
+                      fontWeight: '600',
+                      marginStart: '5%',
+                    }}>
+                    Book Resources
+                  </Text>
+                  <Text style={{fontSize: 8, marginStart: '5%'}}>
+                    Books to Refer
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <View
+                  style={{
+                    height: 40,
+                    width: 220,
+                    backgroundColor: '#c0cdde',
+                    marginHorizontal: '10%',
+                    marginTop: '5%',
+                    borderRadius: 10,
+                  }}>
+                  <Text
+                    style={{
+                      fontSize: 14,
+                      fontWeight: '600',
+                      marginStart: '5%',
+                    }}>
+                    Roadmaps
+                  </Text>
+                  <Text style={{fontSize: 8, marginStart: '5%'}}>
+                    A guide to help you out
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <View
+                  style={{
+                    height: 40,
+                    width: 220,
+                    backgroundColor: '#c0cdde',
+                    marginHorizontal: '10%',
+                    marginTop: '5%',
+                    borderRadius: 10,
+                  }}>
+                  <Text
+                    style={{
+                      fontSize: 14,
+                      fontWeight: '600',
+                      marginStart: '5%',
+                    }}>
+                    Cheat-Sheets
+                  </Text>
+                  <Text style={{fontSize: 8, marginStart: '5%'}}>
+                    To learn on the Go.
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+            <View
+              style={{
+                flex: 0.1,
+                // backgroundColor: 'blue',
+              }}>
+              <TouchableOpacity
+                onPress={async () => {
+                  await Auth().signOut();
+                  navigation.dispatch(StackActions.replace('SignUpScreen'));
+                  // navigation.navigate('Login');
+                }}>
+                <Text
+                  style={{
+                    color: 'gray',
+                    fontSize: 20,
+                    fontWeight: '500',
+                    marginStart: '6%',
+                    marginTop: '3%',
+                  }}>
+                  Log Out
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
       <View style={{flex: 0.125, flexDirection: 'row'}}>
         <View style={{flex: 0.15}}>
           <View
@@ -126,7 +315,7 @@ const Dashboard = ({navigation}) => {
             <Feather name={'bell'} size={27} color={'black'} />
           </View>
           <TouchableOpacity
-            onPress={undefined}
+            onPress={() => setModalVisible(true)}
             style={{
               flex: 0.3,
               //backgroundColor: 'green',
@@ -278,26 +467,6 @@ const Dashboard = ({navigation}) => {
           </TouchableOpacity>
         </View>
       </View>
-
-      {/* <View style={{flex: 0.1, backgroundColor: 'pink'}}>
-        <Text> Dashboard </Text>
-        <TouchableOpacity
-          style={{
-            marginVertical: 10,
-            width: '80%',
-            backgroundColor: 'red',
-            alignItems: 'center',
-            padding: 10,
-            borderRadius: 20,
-          }}
-          onPress={async () => {
-            await Auth().signOut();
-            navigation.dispatch(StackActions.replace('SignUpScreen'));
-            // navigation.navigate('Login');
-          }}>
-          <Text style={{color: '#fff'}}>Logout</Text>
-        </TouchableOpacity>
-      </View> */}
     </KeyboardAvoidingView>
   );
 };
@@ -316,5 +485,48 @@ const styles = StyleSheet.create({
   },
   Item: {
     marginHorizontal: '5%',
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    backgroundColor: '#00000050',
+  },
+  modalView: {
+    margin: '3%',
+    backgroundColor: 'white',
+    borderRadius: 10,
+    //padding: 35,
+    // alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    height: '95%',
+    width: '65%',
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonOpen: {
+    backgroundColor: '#F194FF',
+  },
+  buttonClose: {
+    backgroundColor: '#2196F3',
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
   },
 });
