@@ -12,14 +12,30 @@ import Events from '../screens/Events';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import Profile from '../screens/Profile';
+import VideoResources from '../screens/VideoResources';
+import BookResources from '../screens/BookResources';
 import Comment from '../screens/Comment';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+
 const RootNavigator = () => {
+  // const DrawerTab = () => {
+  //   return (
+  //     <Drawer.Navigator>
+  //       <Drawer.Screen name="BottomTabs" component={BottomTabs} />
+  //       {/* <Drawer.Screen name="Dashboard" component={Dashboard} /> */}
+  //       <Drawer.Screen name="VideoResources" component={VideoResources} />
+  //       <Drawer.Screen name="BookResources" component={BookResources} />
+  //     </Drawer.Navigator>
+  //   );
+  // };
+
   const BottomTabs = () => {
     return (
-      <Tab.Navigator screenOptions={{headerShown: false}}>
+      <Tab.Navigator
+        screenOptions={{headerShown: false}}
+        initialRouteName="Dashboard">
         <Tab.Screen
           name="Dashboard"
           component={Dashboard}
