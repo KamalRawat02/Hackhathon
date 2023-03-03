@@ -88,7 +88,7 @@ const Events = () => {
               }}>
               <Image
                 source={{
-                  uri: 'https://reactnative.dev/img/tiny_logo.png',
+                  uri: 'https://i.pinimg.com/originals/d1/94/d7/d194d7193cd245643591d6e90c8bfdbc.jpg',
                 }}
                 style={styles.logoStyle}
               />
@@ -104,9 +104,10 @@ const Events = () => {
           <Text
             style={{
               color: '#343333',
-              fontSize: 30,
+              fontSize: 25,
               fontWeight: '600',
               marginStart: '5%',
+              marginBottom:"5%"
             }}>
             Hi, Kate
           </Text>

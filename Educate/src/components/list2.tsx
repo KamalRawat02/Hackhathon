@@ -10,16 +10,17 @@ interface propTypes {
 
 const Sslist = (props: propTypes) => {
   return (
-    <View style={{backgroundColor: '#A9CBFF',borderRadius:13}}>
-      <View style={{height: '70%',alignItems:"center",justifyContent:'center'}}>
+    <View style={{backgroundColor: '#cddef8', borderRadius: 13}}>
+      <View
+        style={{height: '70%', alignItems: 'center', justifyContent: 'center'}}>
         <Image
           source={{
             uri: props.imageUrl,
           }}
-          style={{width: '98%', height: '98%', borderRadius: 12,marginTop:3}}
+          style={{width: '98%', height: '98%', borderRadius: 12, marginTop: 3}}
         />
       </View>
-      <View style={{height: 40,marginStart:7}}>
+      <View style={{height: 40, marginStart: 7}}>
         <Text style={{fontWeight: '500', color: '#5f6565'}}>
           {props.songname}
         </Text>
@@ -60,7 +61,9 @@ const Sslist = (props: propTypes) => {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <Text style={{color:'gray',fontSize:12,fontWeight:'600'}}>{props.date}</Text>
+            <Text style={{color: 'gray', fontSize: 12, fontWeight: '600'}}>
+              {props.date}
+            </Text>
           </View>
         </View>
       </View>
