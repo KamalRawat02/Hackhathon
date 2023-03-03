@@ -221,7 +221,7 @@ const Dashboard = ({navigation}) => {
               borderRadius: 10,
             }}
             value={task}
-            onChangeText={text => setTask(text)}
+            onChangeText={text => setTask(text)}w
             placeholder="Write Task"
           />
         </View>

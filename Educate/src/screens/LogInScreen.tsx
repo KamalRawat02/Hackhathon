@@ -12,6 +12,8 @@ import {
 import auth from '@react-native-firebase/auth';
 import ButtonFormat from '../components/ButtonFormate';
 import CustomInput from '../components/CustomInput';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const LogInScreen = ({navigation}: any) => {
   const [email, setEmail] = useState('');
@@ -85,9 +87,9 @@ const LogInScreen = ({navigation}: any) => {
               heading={'Email'}
               value={email}
               onChangeText={value => setEmail(value)}
-              // leftIconType={
-              //   <Ionicons name={'person-outline'} size={24} color={'black'} />
-              // }
+              leftIconType={
+                <Ionicons name={'person-outline'} size={24} color={'black'} />
+              }
             />
             {emailError ? <Text>{emailMessage}</Text> : null}
             <TouchableOpacity onPress={() => setVisible(!visible)}>
@@ -95,17 +97,17 @@ const LogInScreen = ({navigation}: any) => {
                 value={pass}
                 onChangeText={value => setPass(value)}
                 heading={'Password'}
-                //leftIconType={
-                //   <MaterialCommunityIcons
-                //     name={'lock-open-outline'}
-                //     size={24}
-                //     color={'black'}
-                //   />
-                // }
+                leftIconType={
+                  <MaterialCommunityIcons
+                    name={'lock-open-outline'}
+                    size={24}
+                    color={'black'}
+                  />
+                }
                 secureTextEntry={visible}
-                // rightIconType={
-                //   <Ionicons name={'eye-off'} size={20} color={'black'} />
-                // }
+                rightIconType={
+                  <Ionicons name={'eye-off'} size={20} color={'black'} />
+                }
               />
             </TouchableOpacity>
             {passError ? <Text>{passMessage}</Text> : null}
