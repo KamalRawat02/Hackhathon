@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
@@ -12,9 +13,14 @@ const Task = props => {
         <View style={styles.circular} />
       </View>
 
-      <View style={{flex:0.1,justifyContent:'center',alignItems:'center'}}>
+      <View style={{flex: 0.1, justifyContent: 'center', alignItems: 'center'}}>
         <View
-          style={{height: 18, width: 18, backgroundColor: 'red',borderRadius:8}}
+          style={{
+            height: 18,
+            width: 18,
+            backgroundColor: 'red',
+            borderRadius: 8,
+          }}
         />
       </View>
     </View>
@@ -39,7 +45,7 @@ const styles = StyleSheet.create({
     flex: 0.8,
   },
   itemText: {
-    color: 'black',
+    color: 'white',
     fontSize: 16,
     marginStart: 3,
   },

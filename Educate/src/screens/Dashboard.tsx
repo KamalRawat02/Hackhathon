@@ -56,7 +56,7 @@ const Dashboard = ({navigation}) => {
               <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
                 <Image
                   source={{
-                    uri: 'https://reactnative.dev/img/tiny_logo.png',
+                    uri: 'https://i.pinimg.com/originals/d1/94/d7/d194d7193cd245643591d6e90c8bfdbc.jpg',
                   }}
                   style={styles.logoStyle}
                 />
@@ -72,10 +72,11 @@ const Dashboard = ({navigation}) => {
           }}>
           <Text
             style={{
-              color: 'gray',
-              fontSize: 30,
+              color: '#343333',
+              fontSize: 25,
               fontWeight: '600',
               marginStart: '5%',
+              marginBottom:'5%'
             }}>
             Hi, Kate
           </Text>
@@ -279,7 +280,7 @@ const styles = StyleSheet.create({
   },
   logoStyle: {
     width: '95%',
-    height: '95%',
+    height: '99%',
     //elevation: 10,
     borderRadius: 50,
   },
