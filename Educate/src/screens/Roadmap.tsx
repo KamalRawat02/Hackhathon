@@ -26,42 +26,42 @@ const Roadmaps = ({navigation}) => {
       id: '1',
       songname: 'Web Dev',
       imageUrl:
-        'https://www.simplilearn.com/ice9/free_resources_article_thumb/c-for-loop.JPG',
+        'https://www.geeksforgeeks.org/roadmap-to-become-a-web-developer-in-2022/',
       low: 'Full Stack Development',
     },
     {
       id: '2',
       songname: 'ML',
       imageUrl:
-        'https://linuxhint.com/wp-content/uploads/2021/09/Programming-examples-cpp-02.png',
+        'https://www.codewithharry.com/blogpost/complete-ml-roadmap-for-beginners/',
       low: 'Machine Learning',
     },
     {
       id: '3',
       songname: 'Data Analysis',
       imageUrl:
-        'https://www.tutorialgateway.org/wp-content/uploads/C-Program-to-Calculate-Profit-or-Loss-1-1.png?ezimgfmt=ng:webp/ngcb214',
+        'https://careerfoundry.com/en/blog/data-analytics/how-to-become-a-data-analyst/',
       low: 'Data Operation',
     },
     {
       id: '4',
       songname: 'MERN',
       imageUrl:
-        'https://www.simplilearn.com/ice9/free_resources_article_thumb/c-for-loop.JPG',
+        'https://workat.tech/fullstack-development/article/fullstack-development-roadmap-mern-stack-8eqh1qepx6md',
       low: 'Full Stack Development',
     },
     {
       id: '5',
       songname: 'DSA',
       imageUrl:
-        'https://linuxhint.com/wp-content/uploads/2021/09/Programming-examples-cpp-02.png',
+        'https://www.codingninjas.com/codestudio/library/complete-data-structures-and-algorithms-roadmap-for-placements',
       low: 'Data Sctructure',
     },
     {
       id: '6',
       songname: 'MEAN',
       imageUrl:
-        'https://www.tutorialgateway.org/wp-content/uploads/C-Program-to-Calculate-Profit-or-Loss-1-1.png?ezimgfmt=ng:webp/ngcb214',
+        'https://www.scaler.com/topics/software-engineering/full-stack-developer-roadmap/',
       low: 'Full Stack Deveklopment',
     },
   ];
