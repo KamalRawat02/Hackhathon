@@ -78,17 +78,20 @@ const Doubts = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.container}>
-      <Modal
+       <Modal
         animationType="fade"
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
+          //Alert.alert('Modal has been closed.');
           setModalVisible(!modalVisible);
         }}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <View style={{flex: 0.05}}>
-              <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
+              <TouchableOpacity
+                style={{marginStart: '2%'}}
+                onPress={() => setModalVisible(!modalVisible)}>
                 <Entypo name={'cross'} size={35} color={'black'} />
               </TouchableOpacity>
             </View>
@@ -139,18 +142,18 @@ const Doubts = ({navigation}) => {
                 onPress={() => navigation.navigate('VideoResources')}>
                 <View
                   style={{
-                    height: 40,
+                    height: 43,
                     width: 220,
                     backgroundColor: '#c0cdde',
                     marginHorizontal: '10%',
-                    marginTop: '5%',
+                    marginTop: '8%',
                     borderRadius: 10,
                   }}>
                   <Text
                     style={{
                       fontSize: 14,
                       fontWeight: '600',
-                      marginStart: '5%',
+                      marginStart: '8%',
                     }}>
                     Video Resources
                   </Text>
@@ -163,11 +166,11 @@ const Doubts = ({navigation}) => {
                 onPress={() => navigation.navigate('BookResources')}>
                 <View
                   style={{
-                    height: 40,
+                    height: 43,
                     width: 220,
                     backgroundColor: '#c0cdde',
                     marginHorizontal: '10%',
-                    marginTop: '5%',
+                    marginTop: '8%',
                     borderRadius: 10,
                   }}>
                   <Text
@@ -186,11 +189,11 @@ const Doubts = ({navigation}) => {
               <TouchableOpacity onPress={() => navigation.navigate('Roadmaps')}>
                 <View
                   style={{
-                    height: 40,
+                    height: 43,
                     width: 220,
                     backgroundColor: '#c0cdde',
                     marginHorizontal: '10%',
-                    marginTop: '5%',
+                    marginTop: '8%',
                     borderRadius: 10,
                   }}>
                   <Text
@@ -209,11 +212,11 @@ const Doubts = ({navigation}) => {
               <TouchableOpacity onPress={() => navigation.navigate('Cheat')}>
                 <View
                   style={{
-                    height: 40,
+                    height: 43,
                     width: 220,
                     backgroundColor: '#c0cdde',
                     marginHorizontal: '10%',
-                    marginTop: '5%',
+                    marginTop: '8%',
                     borderRadius: 10,
                   }}>
                   <Text
@@ -229,12 +232,6 @@ const Doubts = ({navigation}) => {
                   </Text>
                 </View>
               </TouchableOpacity>
-            </View>
-            <View
-              style={{
-                flex: 0.1,
-                // backgroundColor: 'blue',
-              }}>
               <TouchableOpacity
                 onPress={async () => {
                   await Auth().signOut();

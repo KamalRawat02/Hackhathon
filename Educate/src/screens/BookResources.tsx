@@ -142,18 +142,18 @@ const BookResources = ({navigation}) => {
                 onPress={() => navigation.navigate('VideoResources')}>
                 <View
                   style={{
-                    height: 40,
+                    height: 43,
                     width: 220,
                     backgroundColor: '#c0cdde',
                     marginHorizontal: '10%',
-                    marginTop: '5%',
+                    marginTop: '8%',
                     borderRadius: 10,
                   }}>
                   <Text
                     style={{
                       fontSize: 14,
                       fontWeight: '600',
-                      marginStart: '5%',
+                      marginStart: '8%',
                     }}>
                     Video Resources
                   </Text>
@@ -166,11 +166,11 @@ const BookResources = ({navigation}) => {
                 onPress={() => navigation.navigate('BookResources')}>
                 <View
                   style={{
-                    height: 40,
+                    height: 43,
                     width: 220,
                     backgroundColor: '#c0cdde',
                     marginHorizontal: '10%',
-                    marginTop: '5%',
+                    marginTop: '8%',
                     borderRadius: 10,
                   }}>
                   <Text
@@ -189,11 +189,11 @@ const BookResources = ({navigation}) => {
               <TouchableOpacity onPress={() => navigation.navigate('Roadmaps')}>
                 <View
                   style={{
-                    height: 40,
+                    height: 43,
                     width: 220,
                     backgroundColor: '#c0cdde',
                     marginHorizontal: '10%',
-                    marginTop: '5%',
+                    marginTop: '8%',
                     borderRadius: 10,
                   }}>
                   <Text
@@ -212,11 +212,11 @@ const BookResources = ({navigation}) => {
               <TouchableOpacity onPress={() => navigation.navigate('Cheat')}>
                 <View
                   style={{
-                    height: 40,
+                    height: 43,
                     width: 220,
                     backgroundColor: '#c0cdde',
                     marginHorizontal: '10%',
-                    marginTop: '5%',
+                    marginTop: '8%',
                     borderRadius: 10,
                   }}>
                   <Text
@@ -232,12 +232,6 @@ const BookResources = ({navigation}) => {
                   </Text>
                 </View>
               </TouchableOpacity>
-            </View>
-            <View
-              style={{
-                flex: 0.1,
-                // backgroundColor: 'blue',
-              }}>
               <TouchableOpacity
                 onPress={async () => {
                   await Auth().signOut();
@@ -301,7 +295,7 @@ const BookResources = ({navigation}) => {
               marginStart: '5%',
               marginBottom: '5%',
             }}>
-            Hi, Kate
+            Hi, there
           </Text>
         </View>
         <View

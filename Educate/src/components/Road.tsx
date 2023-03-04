@@ -6,7 +6,6 @@ interface propTypes {
   imageUrl: string;
   low: string;
   navigation: any;
-  
 }
 
 const Road = (props: propTypes) => {
