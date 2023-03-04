@@ -26,6 +26,7 @@ const BookResources = ({navigation}) => {
       songname: 'Machine Learning',
       imageUrl:
         'https://www.amazon.in/Hands-Machine-Learning-Scikit-Learn-TensorFlow/dp/9355421982',
+      photoUrl: 'https://reactnative.dev/img/tiny_logo.png',
       poet: 'Aurllien sauce',
     },
     {
@@ -33,36 +34,40 @@ const BookResources = ({navigation}) => {
       songname: 'Coding Interview',
       imageUrl:
         'https://www.amazon.in/Cracking-Coding-Interview-Programing-Questions/dp/0984782850',
-        poet: 'Gayle Laakmaan',
+      photoUrl: 'https://reactnative.dev/img/tiny_logo.png',
+      poet: 'Gayle Laakmaan',
     },
     {
       id: '3',
       songname: 'Alorithum',
       imageUrl:
         'https://mitpress.mit.edu/9780262533058/introduction-to-algorithms/',
-        poet: 'MIT Press',
-      },
+      photoUrl: 'https://reactnative.dev/img/tiny_logo.png',
+      poet: 'MIT Press',
+    },
     {
       id: '4',
       songname: 'Let Us C',
       imageUrl:
         'https://www.amazon.in/Let-Us-C-Yashavant-Kanetkar/dp/8183331637',
-        poet: 'YashWant kanetkar',
+      photoUrl: 'https://reactnative.dev/img/tiny_logo.png',
+      poet: 'YashWant kanetkar',
     },
     {
       id: '5',
       songname: 'Python Programming',
-      imageUrl:
-        'https://www.amazon.in/b?ie=UTF8&node=14447053031',
-        poet: 'J.K Rolling',
+      imageUrl: 'https://www.amazon.in/b?ie=UTF8&node=14447053031',
+      photoUrl: 'https://reactnative.dev/img/tiny_logo.png',
+      poet: 'J.K Rolling',
     },
     {
       id: '6',
       songname: 'Think like a programmer',
       imageUrl:
         'https://www.amazon.in/Think-Like-Programmer-Introduction-Creative/dp/1593274246',
-        poet: 'Dr.Chinmay Pathak',
-      },
+      photoUrl: 'https://reactnative.dev/img/tiny_logo.png',
+      poet: 'Dr.Chinmay Pathak',
+    },
   ];
   const renderItem2 = ({item}) => {
     return (
@@ -72,6 +77,7 @@ const BookResources = ({navigation}) => {
           navigation={undefined}
           imageUrl={item.imageUrl}
           poet={item.poet}
+          photoUrl={item.photoUrl}
         />
       </View>
     );
@@ -371,7 +377,7 @@ const styles = StyleSheet.create({
   cardView2: {
     width: '95%',
     marginTop: 10,
-    height: 100,
+    height: 270,
     marginHorizontal: 10,
     borderRadius: 5,
   },
