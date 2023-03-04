@@ -99,23 +99,28 @@ const Doubts = ({navigation}) => {
       id: '7',
       songname: text,
       imageUrl:
-        'https://www.vegrecipesofindia.com/wp-content/uploads/2020/11/pizza-recipe-2-500x375.jpg',
+        'https://user-images.githubusercontent.com/49961658/106075478-4fe97d00-60d3-11eb-9522-0b87eb266b65.png',
     };
     setData([...DATA, temp]);
   };
   return (
     <View style={styles.container}>
-      <KeyboardAvoidingView>
+      <KeyboardAvoidingView behavior="height" enabled={false}>
         <Modal
           animationType="fade"
           transparent={true}
           visible={doubtModal}
           onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
+            // Alert.alert('Modal has been closed.');
             setDoubtModal(!doubtModal);
           }}>
           <View
-            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: '#00000060',
+            }}>
             <View
               style={{
                 height: '40%',
@@ -123,6 +128,8 @@ const Doubts = ({navigation}) => {
                 backgroundColor: 'white',
                 justifyContent: 'space-evenly',
                 alignItems: 'center',
+                borderRadius: 10,
+                elevation: 20,
               }}>
               <Button title="Select Image" onPress={() => cameraPermission()} />
               <TextInput
@@ -401,7 +408,7 @@ const Doubts = ({navigation}) => {
           position: 'absolute',
           top: '90%',
           left: '86%',
-          // backgroundColor: 'white',
+          //backgroundColor: 'white',
         }}>
         <Feather name={'plus-circle'} size={40} color={'black'} />
       </TouchableOpacity>
