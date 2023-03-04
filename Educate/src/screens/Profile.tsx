@@ -1,17 +1,15 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {
-  View,
-  StyleSheet,
-  TextInput,
-  Image,
-  PermissionsAndroid,
-} from 'react-native';
+import {View, StyleSheet, TextInput, Text} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import {Button} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-import {utils} from '@react-native-firebase/app';
-import storage from '@react-native-firebase/storage';
+import {TouchableOpacity} from 'react-native';
+import {ScreenWidth} from '@rneui/base';
+import CustomInput from '../components/CustomInput';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Octicons from 'react-native-vector-icons/Octicons';
 const Profile = () => {
   const [name, setName] = useState('');
   const [enrol, setEnrol] = useState('');
@@ -52,47 +50,92 @@ const Profile = () => {
     }
   };
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <Text style={{color:'black',fontSize:30,fontWeight:'600'}}>
+        Profile
+      </Text>
       <View
-        style={{flex: 0.3, alignItems: 'center', justifyContent: 'flex-end'}}>
-        {/* {imageData !== null ? (
-          <Image source={{uri: imageData?.assests[0]?.uri}} />
-        ) : null} */}
-        <Button title="Select Image" onPress={() => cameraPermission()} />
-      </View>
-      <View>
-        <TextInput
-          style={styles.input}
+        style={{
+          flex: 0.7,
+          backgroundColor: 'white',
+          width: '90%',
+          borderRadius: 10,
+          elevation: 10,
+        }}>
+        <CustomInput
           onChangeText={value => setName(value)}
           value={name}
-          placeholder={'Name'}
+          heading={'Name'}
+          leftIconType={
+            <MaterialCommunityIcons
+              name={'face-man-profile'}
+              size={24}
+              color={'black'}
+            />
+          }
         />
-        <TextInput
-          style={styles.input}
+        <CustomInput
           onChangeText={value => setEnrol(value)}
           value={enrol}
-          placeholder={'Enrollment No.'}
+          heading={'Enrollment No.'}
+          leftIconType={<Octicons name={'number'} size={24} color={'black'} />}
         />
-        <TextInput
-          style={styles.input}
+        <CustomInput
           onChangeText={value => setPhone(value)}
           value={phone}
-          placeholder={'Phone No.'}
+          heading={'Phone No.'}
+          leftIconType={
+            <MaterialCommunityIcons
+              name={'card-account-phone-outline'}
+              size={24}
+              color={'black'}
+            />
+          }
         />
-        <TextInput
-          style={styles.input}
+        <CustomInput
           onChangeText={value => setCourse(value)}
           value={course}
-          placeholder={'Course'}
+          heading={'Course'}
+          leftIconType={
+            <MaterialCommunityIcons
+              name={'account-tie-outline'}
+              size={24}
+              color={'black'}
+            />
+          }
         />
-        <TextInput
-          style={styles.input}
+        <CustomInput
           onChangeText={value => setBranch(value)}
           value={branch}
-          placeholder={'Branch'}
+          heading={'Branch'}
+          leftIconType={
+            <MaterialCommunityIcons
+              name={'source-branch'}
+              size={24}
+              color={'black'}
+            />
+          }
         />
-        <Button title="Submit" onPress={() => handleSubmit()} />
-        {/* <Button title="GET" onPress={() => temp()} /> */}
+        <View
+          style={{
+            height: 60,
+            width: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <TouchableOpacity
+            onPress={() => handleSubmit()}
+            style={{
+              height: 40,
+              width: 140,
+              backgroundColor: '#1b62bf',
+              borderRadius: 15,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Text style={{color: 'white',fontWeight:'600',fontSize:17}}>Submit</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
