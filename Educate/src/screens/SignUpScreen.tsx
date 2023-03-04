@@ -16,6 +16,8 @@ import ButtonFormat from '../components/ButtonFormate';
 import CustomInput from '../components/CustomInput';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import firestore from '@react-native-firebase/firestore';
 
 const SignUpScreen = ({navigation}) => {
   const [vivi, setVivi] = useState(false);
@@ -25,28 +27,43 @@ const SignUpScreen = ({navigation}) => {
   const [passError, setPassError] = useState(false);
   const [emailMessage, setEmailMesage] = useState('');
   const [passMessage, setPassMessage] = useState('');
+  const [name, setName] = useState('');
+  const [nameError, setNameError] = useState(false);
+  const [nameMessage, setNameMessage] = useState('');
   const [message, setMessage] = useState('');
   const handleSignIn = async () => {
     let res = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    if (email === '') {
+    if (name === '') {
+      setNameError(true);
+      setNameMessage('* Please Enter Name');
+    } else if (email === '') {
       setEmailError(true);
       setEmailMesage('* Please Enter Email');
+      setNameError(false);
+      setNameMessage('');
     } else if (res.test(email) === false) {
       setEmailError(true);
       setEmailMesage('* Please Enter Valid Email');
+      setNameError(false);
+      setNameMessage('');
     } else if (pass === '') {
       setPassError(true);
       setEmailError(false);
       setEmailMesage('');
       setPassMessage('* Please Set a Password');
+      setNameError(false);
+      setNameMessage('');
     } else if (pass.length < 6) {
       setEmailMesage('');
       setEmailError(false);
       setPassError(true);
       setPassMessage('* Password should be of minimum 6 character');
+      setNameError(false);
+      setNameMessage('');
     } else {
       setEmailError(false);
       setPassError(false);
+      setNameError(false);
       console.log('hii');
       //   navigation.navigate('Dashboard');
       try {
@@ -55,18 +72,14 @@ const SignUpScreen = ({navigation}) => {
           pass,
         );
         console.log(isUserCreated);
-        // alert('User Created');
-        navigation.navigate('Dashboard');
+        const ID = auth().currentUser?.uid;
+        firestore().collection('Users').doc(ID).set({name});
+        navigation.navigate('BottomTabs', {screen: 'Dashboard'});
       } catch (err) {
         console.log(err);
-
-        //     // setMessage(err?.message);
       }
     }
   };
-  function setVisible(arg0: boolean): void {
-    throw new Error('Function not implemented.');
-  }
 
   return (
     <KeyboardAvoidingView
@@ -89,7 +102,7 @@ const SignUpScreen = ({navigation}) => {
         </View>
         <View style={styles.middleView}>
           <View style={styles.topMiddleView}>
-            {/* <CustomInput
+            <CustomInput
               heading={'Name'}
               value={name}
               onChangeText={value => setName(value)}
@@ -101,7 +114,7 @@ const SignUpScreen = ({navigation}) => {
               <Text style={{color: 'red', marginLeft: 15, marginBottom: 5}}>
                 {nameMessage}
               </Text>
-            ) : null} */}
+            ) : null}
             <CustomInput
               heading={'Email'}
               value={email}
