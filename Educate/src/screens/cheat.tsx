@@ -333,10 +333,10 @@ const Cheat = ({navigation}) => {
             marginStart: '3%',
             color: '#343333',
           }}>
-          Roadmaps,
+          Cheat-sheet,
         </Text>
         <Text style={{marginStart: '4%', fontSize: 11, color: '#343333'}}>
-          Road that Guide you for Better,
+          Cheatsheet to learn on the go..!,
         </Text>
       </View>
       <View style={{flex: 0.85}}>

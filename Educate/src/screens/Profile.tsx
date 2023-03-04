@@ -14,7 +14,7 @@ const Profile = () => {
   const [name, setName] = useState('');
   const [enrol, setEnrol] = useState('');
   const [phone, setPhone] = useState('');
-  const [age, setAge] = useState('');
+  const [imageData, setImageData] = useState();
   const [branch, setBranch] = useState('');
   const [course, setCourse] = useState('');
   const ID = auth().currentUser?.uid;
@@ -32,6 +32,22 @@ const Profile = () => {
   const temp = async () => {
     const apk = await firestore().collection('Users').doc(ID).get();
     console.log(apk);
+  };
+  const cameraPermission = async () => {
+    try {
+      const result = await launchImageLibrary({mediaType: 'photo'});
+      setImageData(result);
+      console.log(imageData);
+      // const reference = storage().ref(imageData.assests[0].fileName);
+      // const pathfile = imageData.assests[0].uri;
+      // await reference.putFile(pathfile);
+      // const url = await storage()
+      //   .ref(imageData.assests[0].fileName)
+      //   .getDownloadURL();
+      // console.log(url);
+    } catch (err) {
+      console.warn(err);
+    }
   };
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>

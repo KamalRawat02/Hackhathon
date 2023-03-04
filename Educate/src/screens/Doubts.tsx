@@ -1,13 +1,16 @@
 /* eslint-disable react-native/no-inline-styles */
-import { StackActions } from '@react-navigation/native';
-import React, { useState } from 'react';
+import {StackActions} from '@react-navigation/native';
+import React, {useState} from 'react';
 import {
   Alert,
+  Button,
   FlatList,
   Image,
   Modal,
   StyleSheet,
+  TextInput,
   TouchableOpacity,
+  KeyboardAvoidingView,
   View,
 } from 'react-native';
 import {Text} from 'react-native';
@@ -16,9 +19,15 @@ import Feather from 'react-native-vector-icons/Feather';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Doubtssc from '../components/doubtssc';
 import Sslist from '../components/list2';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import storage from '@react-native-firebase/storage';
 
 const Doubts = ({navigation}) => {
-  const DATA = [
+  const [doubtModal, setDoubtModal] = useState(false);
+  const [text, setText] = useState('');
+  const [imageData, setImageData] = useState();
+
+  const [DATA, setData] = useState([
     {
       id: '1',
       songname:
@@ -61,7 +70,7 @@ const Doubts = ({navigation}) => {
       imageUrl:
         'https://www.tutorialgateway.org/wp-content/uploads/C-Program-to-Calculate-Profit-or-Loss-1-1.png?ezimgfmt=ng:webp/ngcb214',
     },
-  ];
+  ]);
   const renderItem2 = ({item}) => {
     return (
       <View style={styles.cardView2}>
@@ -75,10 +84,63 @@ const Doubts = ({navigation}) => {
       </View>
     );
   };
+  const cameraPermission = async () => {
+    try {
+      const result = await launchImageLibrary({mediaType: 'photo'});
+      setImageData(result);
+      // console.log(url);
+    } catch (err) {
+      console.warn(err);
+    }
+  };
   const [modalVisible, setModalVisible] = useState(false);
+  const submitDoubt = () => {
+    const temp = {
+      id: '7',
+      songname: text,
+      imageUrl:
+        'https://www.vegrecipesofindia.com/wp-content/uploads/2020/11/pizza-recipe-2-500x375.jpg',
+    };
+    setData([...DATA, temp]);
+  };
   return (
     <View style={styles.container}>
-       <Modal
+      <KeyboardAvoidingView>
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={doubtModal}
+          onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+            setDoubtModal(!doubtModal);
+          }}>
+          <View
+            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <View
+              style={{
+                height: '40%',
+                width: '80%',
+                backgroundColor: 'white',
+                justifyContent: 'space-evenly',
+                alignItems: 'center',
+              }}>
+              <Button title="Select Image" onPress={() => cameraPermission()} />
+              <TextInput
+                style={{
+                  width: '90%',
+                  height: '15%',
+                  borderWidth: 1,
+                  padding: 10,
+                }}
+                onChangeText={value => setText(value)}
+                value={text}
+              />
+              <Button title="Submit" onPress={() => submitDoubt()} />
+            </View>
+          </View>
+        </Modal>
+      </KeyboardAvoidingView>
+      <Modal
         animationType="fade"
         transparent={true}
         visible={modalVisible}
@@ -325,7 +387,7 @@ const Doubts = ({navigation}) => {
           </TouchableOpacity>
         </View>
       </View>
-    
+
       <View style={{flex: 0.85}}>
         <FlatList
           data={DATA}
@@ -333,6 +395,16 @@ const Doubts = ({navigation}) => {
           keyExtractor={item => item.id}
         />
       </View>
+      <TouchableOpacity
+        onPress={() => setDoubtModal(!doubtModal)}
+        style={{
+          position: 'absolute',
+          top: '90%',
+          left: '86%',
+          // backgroundColor: 'white',
+        }}>
+        <Feather name={'plus-circle'} size={40} color={'black'} />
+      </TouchableOpacity>
     </View>
   );
 };
