@@ -1,11 +1,9 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {
   Button,
   StyleSheet,
   TextInput,
   View,
-  Alert,
   Text,
   TouchableOpacity,
   KeyboardAvoidingView,
@@ -14,19 +12,19 @@ import {
 import auth from '@react-native-firebase/auth';
 import ButtonFormat from '../components/ButtonFormate';
 import CustomInput from '../components/CustomInput';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const SignUpScreen = ({navigation}) => {
-  const [vivi, setVivi] = useState(false);
+const LogInScreen = ({navigation}: any) => {
   const [email, setEmail] = useState('');
+  const [visible, setVisible] = useState(false);
   const [pass, setPass] = useState('');
   const [emailError, setEmailError] = useState(false);
   const [passError, setPassError] = useState(false);
   const [emailMessage, setEmailMesage] = useState('');
   const [passMessage, setPassMessage] = useState('');
-  const [message, setMessage] = useState('');
-  const handleSignIn = async () => {
+  //   const [message, setMessage] = useState('');
+  const handleLogIn = async () => {
     let res = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
     if (email === '') {
       setEmailError(true);
@@ -38,7 +36,7 @@ const SignUpScreen = ({navigation}) => {
       setPassError(true);
       setEmailError(false);
       setEmailMesage('');
-      setPassMessage('* Please Set a Password');
+      setPassMessage('* Please Enter Password');
     } else if (pass.length < 6) {
       setEmailMesage('');
       setEmailError(false);
@@ -48,15 +46,15 @@ const SignUpScreen = ({navigation}) => {
       setEmailError(false);
       setPassError(false);
       console.log('hii');
-      //   navigation.navigate('Dashboard');
+      navigation.navigate('BottomTabs', {screen: 'Dashboard'});
       try {
-        const isUserCreated = await auth().createUserWithEmailAndPassword(
+        const isUserCreated = await auth().signInWithEmailAndPassword(
           email,
           pass,
         );
         console.log(isUserCreated);
         // alert('User Created');
-        navigation.navigate('Dashboard');
+        // navigation.navigate('Dashboard');
       } catch (err) {
         console.log(err);
 
@@ -64,16 +62,12 @@ const SignUpScreen = ({navigation}) => {
       }
     }
   };
-  function setVisible(arg0: boolean): void {
-    throw new Error('Function not implemented.');
-  }
-
   return (
     <KeyboardAvoidingView
       style={styles.container}
       behavior="height"
       enabled={false}>
-      <View style={{flex: 1}}>
+      <View style={styles.container}>
         <View style={styles.upperView}>
           <View style={styles.topUpperView}>
             <TouchableOpacity
@@ -84,42 +78,25 @@ const SignUpScreen = ({navigation}) => {
                 style={styles.logoStyle}
               />
             </TouchableOpacity>
-            <Text style={styles.signTextStyle}> Sign Up</Text>
+            <Text style={styles.signTextStyle}>Log in</Text>
           </View>
         </View>
         <View style={styles.middleView}>
           <View style={styles.topMiddleView}>
-            {/* <CustomInput
-              heading={'Name'}
-              value={name}
-              onChangeText={value => setName(value)}
-              leftIconType={
-                <Ionicons name={'person-outline'} size={24} color={'black'} />
-              }
-            />
-            {nameError ? (
-              <Text style={{color: 'red', marginLeft: 15, marginBottom: 5}}>
-                {nameMessage}
-              </Text>
-            ) : null} */}
             <CustomInput
               heading={'Email'}
               value={email}
               onChangeText={value => setEmail(value)}
               leftIconType={
-                <MaterialIcons
-                  name={'mail-outline'}
-                  size={25}
-                  color={'black'}
-                />
+                <Ionicons name={'person-outline'} size={24} color={'black'} />
               }
             />
             {emailError ? <Text>{emailMessage}</Text> : null}
-            <TouchableOpacity onPress={() => setVivi(!vivi)}>
+            <TouchableOpacity onPress={() => setVisible(!visible)}>
               <CustomInput
-                heading={'Password'}
                 value={pass}
                 onChangeText={value => setPass(value)}
+                heading={'Password'}
                 leftIconType={
                   <MaterialCommunityIcons
                     name={'lock-open-outline'}
@@ -127,22 +104,35 @@ const SignUpScreen = ({navigation}) => {
                     color={'black'}
                   />
                 }
-                secureTextEntry={vivi}
-                // rightIconType={
-                //   <Ionicons name={'eye-off'} size={20} color={'black'} />
-                // }
+                secureTextEntry={visible}
+                rightIconType={
+                  <Ionicons name={'eye-off'} size={20} color={'black'} />
+                }
               />
             </TouchableOpacity>
             {passError ? <Text>{passMessage}</Text> : null}
+            <View style={styles.Forgot}>
+              <Text style={styles.ForText}>Forget Password?</Text>
+            </View>
           </View>
         </View>
         <View style={styles.lowerView}>
           <ButtonFormat
             buttonStyle={styles.signUpView}
-            onpress={() => handleSignIn()}>
-            <Text style={styles.signUpText}>Sign Up</Text>
+            onpress={() => handleLogIn()}>
+            <Text style={styles.signUpText}>Log in</Text>
           </ButtonFormat>
-          <Text style={{color: '#DFDFDF'}}>__________________</Text>
+          <Text style={{color: '#DFDFDF'}}>
+            ______________________________________________
+          </Text>
+          {/* <ButtonFormat buttonStyle={styles.googleView} onpress={undefined}>
+            <Image
+              source={require('../assests/G-Icon.png')}
+              style={styles.googleIcon}
+              resizeMode="contain"
+            />
+            <Text style={styles.googleText}>Continue with Google</Text>
+          </ButtonFormat> */}
         </View>
       </View>
     </KeyboardAvoidingView>
@@ -150,15 +140,9 @@ const SignUpScreen = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#ffffff',
   },
   signUpView: {
     width: '75%',
@@ -186,7 +170,7 @@ const styles = StyleSheet.create({
   logoStyle: {
     width: '95%',
     height: '95%',
-    //elevation: 10,
+    // elevation: 35,
   },
   upperView: {flex: 0.3, alignItems: 'center'},
   middleView: {flex: 0.4, alignItems: 'center'},
@@ -210,6 +194,14 @@ const styles = StyleSheet.create({
     shadowColor: 'blue',
     fontWeight: '500',
   },
+  Forgot: {
+    justifyContent: 'flex-start',
+    alignItems: 'flex-end',
+  },
+  ForText: {
+    color: 'black',
+    fontWeight: '500',
+  },
 });
 
-export default SignUpScreen;
+export default LogInScreen;
