@@ -1,5 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
+import {Linking} from 'react-native';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 interface propTypes {
   songname: string;
@@ -10,14 +11,15 @@ interface propTypes {
 
 const Book = (props: propTypes) => {
   return (
-    <View
+    <TouchableOpacity
       style={{
         backgroundColor: '#cddef8',
         borderRadius: 13,
         height: 80,
         alignItems: 'center',
         // justifyContent: 'center',
-      }}>
+      }}
+      onPress={() => Linking.openURL(props.imageUrl)}>
       <View
         style={{
           height: '65%',
@@ -33,7 +35,7 @@ const Book = (props: propTypes) => {
         </Text>
       </View>
       <Text style={{color: 'gray'}}>{props.poet}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

@@ -1,24 +1,24 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {Image, Text, TouchableOpacity, View} from 'react-native';
+import {Image, Text, TouchableOpacity, View, Linking} from 'react-native';
 interface propTypes {
   songname: string;
   imageUrl: string;
   low: string;
   navigation: any;
-  
 }
 
 const Road = (props: propTypes) => {
   return (
-    <View
+    <TouchableOpacity
       style={{
         backgroundColor: '#cddef8',
         borderRadius: 13,
         height: 80,
         alignItems: 'center',
         // justifyContent: 'center',
-      }}>
+      }}
+      onPress={() => Linking.openURL(props.imageUrl)}>
       <View
         style={{
           height: '65%',
@@ -34,7 +34,7 @@ const Road = (props: propTypes) => {
         </Text>
       </View>
       <Text style={{color: 'gray'}}>{props.low}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

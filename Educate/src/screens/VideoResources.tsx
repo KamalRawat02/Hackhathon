@@ -22,38 +22,32 @@ const VideoResources = ({navigation}) => {
     {
       id: '1',
       songname: 'Python Tutorial For Beginners in hindi',
-      imageUrl:
-        'https://www.youtube.com/watch?v=gfDE2a7MKjAG',
+      imageUrl: 'https://www.youtube.com/watch?v=gfDE2a7MKjAG',
     },
     {
       id: '2',
       songname: 'MySql Tutorail for Beginners [Full Couser]',
-      imageUrl:
-        'https://www.youtube.com/watch?v=7S_tz1z_5bA',
+      imageUrl: 'https://www.youtube.com/watch?v=7S_tz1z_5bA',
     },
     {
       id: '3',
       songname: 'Git in 1 hour',
-      imageUrl:
-        'https://www.youtube.com/watch?v=8JJ101D3knE',
+      imageUrl: 'https://www.youtube.com/watch?v=8JJ101D3knE',
     },
     {
       id: '4',
       songname: 'Learn C++ in One Shot',
-      imageUrl:
-        'https://www.youtube.com/watch?v=EAR7De6Goz4',
+      imageUrl: 'https://www.youtube.com/watch?v=EAR7De6Goz4',
     },
     {
       id: '5',
       songname: 'Java Script in one shot',
-      imageUrl:
-        'https://www.youtube.com/watch?v=W6NZfCO5SIk',
+      imageUrl: 'https://www.youtube.com/watch?v=W6NZfCO5SIk',
     },
     {
       id: '6',
       songname: 'React Native in One shot',
-      imageUrl:
-        'https://www.youtube.com/watch?v=0-S5a0eXPoc',
+      imageUrl: 'https://www.youtube.com/watch?v=0-S5a0eXPoc',
     },
   ];
   const renderItem2 = ({item}) => {
