@@ -33,36 +33,35 @@ const BookResources = ({navigation}) => {
       songname: 'Coding Interview',
       imageUrl:
         'https://www.amazon.in/Cracking-Coding-Interview-Programing-Questions/dp/0984782850',
-        poet: 'Gayle Laakmaan',
+      poet: 'Gayle Laakmaan',
     },
     {
       id: '3',
       songname: 'Alorithum',
       imageUrl:
         'https://mitpress.mit.edu/9780262533058/introduction-to-algorithms/',
-        poet: 'MIT Press',
-      },
+      poet: 'MIT Press',
+    },
     {
       id: '4',
       songname: 'Let Us C',
       imageUrl:
         'https://www.amazon.in/Let-Us-C-Yashavant-Kanetkar/dp/8183331637',
-        poet: 'YashWant kanetkar',
+      poet: 'YashWant kanetkar',
     },
     {
       id: '5',
       songname: 'Python Programming',
-      imageUrl:
-        'https://www.amazon.in/b?ie=UTF8&node=14447053031',
-        poet: 'J.K Rolling',
+      imageUrl: 'https://www.amazon.in/b?ie=UTF8&node=14447053031',
+      poet: 'J.K Rolling',
     },
     {
       id: '6',
       songname: 'Think like a programmer',
       imageUrl:
         'https://www.amazon.in/Think-Like-Programmer-Introduction-Creative/dp/1593274246',
-        poet: 'Dr.Chinmay Pathak',
-      },
+      poet: 'Dr.Chinmay Pathak',
+    },
   ];
   const renderItem2 = ({item}) => {
     return (
