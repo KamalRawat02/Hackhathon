@@ -99,23 +99,28 @@ const Doubts = ({navigation}) => {
       id: '7',
       songname: text,
       imageUrl:
-        'https://www.vegrecipesofindia.com/wp-content/uploads/2020/11/pizza-recipe-2-500x375.jpg',
+        'https://user-images.githubusercontent.com/49961658/106075478-4fe97d00-60d3-11eb-9522-0b87eb266b65.png',
     };
     setData([...DATA, temp]);
   };
   return (
     <View style={styles.container}>
-      <KeyboardAvoidingView>
+      <KeyboardAvoidingView behavior="height" enabled={false}>
         <Modal
           animationType="fade"
           transparent={true}
           visible={doubtModal}
           onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
+            // Alert.alert('Modal has been closed.');
             setDoubtModal(!doubtModal);
           }}>
           <View
-            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: '#00000060',
+            }}>
             <View
               style={{
                 height: '40%',
@@ -123,6 +128,8 @@ const Doubts = ({navigation}) => {
                 backgroundColor: 'white',
                 justifyContent: 'space-evenly',
                 alignItems: 'center',
+                borderRadius: 10,
+                elevation: 20,
               }}>
               <Button title="Select Image" onPress={() => cameraPermission()} />
               <TextInput
@@ -145,12 +152,15 @@ const Doubts = ({navigation}) => {
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
+          //Alert.alert('Modal has been closed.');
           setModalVisible(!modalVisible);
         }}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <View style={{flex: 0.05}}>
-              <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
+              <TouchableOpacity
+                style={{marginStart: '2%'}}
+                onPress={() => setModalVisible(!modalVisible)}>
                 <Entypo name={'cross'} size={35} color={'black'} />
               </TouchableOpacity>
             </View>
@@ -201,18 +211,18 @@ const Doubts = ({navigation}) => {
                 onPress={() => navigation.navigate('VideoResources')}>
                 <View
                   style={{
-                    height: 40,
+                    height: 43,
                     width: 220,
                     backgroundColor: '#c0cdde',
                     marginHorizontal: '10%',
-                    marginTop: '5%',
+                    marginTop: '8%',
                     borderRadius: 10,
                   }}>
                   <Text
                     style={{
                       fontSize: 14,
                       fontWeight: '600',
-                      marginStart: '5%',
+                      marginStart: '8%',
                     }}>
                     Video Resources
                   </Text>
@@ -225,11 +235,11 @@ const Doubts = ({navigation}) => {
                 onPress={() => navigation.navigate('BookResources')}>
                 <View
                   style={{
-                    height: 40,
+                    height: 43,
                     width: 220,
                     backgroundColor: '#c0cdde',
                     marginHorizontal: '10%',
-                    marginTop: '5%',
+                    marginTop: '8%',
                     borderRadius: 10,
                   }}>
                   <Text
@@ -248,11 +258,11 @@ const Doubts = ({navigation}) => {
               <TouchableOpacity onPress={() => navigation.navigate('Roadmaps')}>
                 <View
                   style={{
-                    height: 40,
+                    height: 43,
                     width: 220,
                     backgroundColor: '#c0cdde',
                     marginHorizontal: '10%',
-                    marginTop: '5%',
+                    marginTop: '8%',
                     borderRadius: 10,
                   }}>
                   <Text
@@ -271,11 +281,11 @@ const Doubts = ({navigation}) => {
               <TouchableOpacity onPress={() => navigation.navigate('Cheat')}>
                 <View
                   style={{
-                    height: 40,
+                    height: 43,
                     width: 220,
                     backgroundColor: '#c0cdde',
                     marginHorizontal: '10%',
-                    marginTop: '5%',
+                    marginTop: '8%',
                     borderRadius: 10,
                   }}>
                   <Text
@@ -291,12 +301,6 @@ const Doubts = ({navigation}) => {
                   </Text>
                 </View>
               </TouchableOpacity>
-            </View>
-            <View
-              style={{
-                flex: 0.1,
-                // backgroundColor: 'blue',
-              }}>
               <TouchableOpacity
                 onPress={async () => {
                   await Auth().signOut();
@@ -404,7 +408,7 @@ const Doubts = ({navigation}) => {
           position: 'absolute',
           top: '90%',
           left: '86%',
-          // backgroundColor: 'white',
+          //backgroundColor: 'white',
         }}>
         <Feather name={'plus-circle'} size={40} color={'black'} />
       </TouchableOpacity>
