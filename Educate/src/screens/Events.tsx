@@ -1,46 +1,75 @@
 /* eslint-disable react-native/no-inline-styles */
+import {StackActions} from '@react-navigation/native';
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  ScrollView,
-  TextInput,
-  Alert,
-  Modal,
-  Pressable,
-} from 'react-native';
-import Auth from '@react-native-firebase/auth';
-import {useNavigation, StackActions} from '@react-navigation/native';
-import {KeyboardAvoidingView} from 'react-native';
-import {Image, ScreenWidth} from '@rneui/base';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Feather from 'react-native-vector-icons/Feather';
+import {Alert, FlatList, Modal, TouchableOpacity} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
+import Feather from 'react-native-vector-icons/Feather';
 import Octicons from 'react-native-vector-icons/Octicons';
-import Task from '../components/Task';
-import {BackHandler} from 'react-native/Libraries/Utilities/BackHandler';
-import VideoResources from './VideoResources';
-const Dashboard = ({navigation}) => {
-  const [task, setTask] = useState('');
-  const [taskItems, setTaskItems] = useState([]);
-  const handleAddTask = () => {
-    setTaskItems([...taskItems, task]);
-    setTask('');
-    console.log(taskItems);
-  };
-  const completeTask = index => {
-    let itemsCopy = [...taskItems];
-    itemsCopy.splice(index, 1);
-    setTaskItems(itemsCopy);
+import Sslist from '../components/list2';
+
+const Events = ({navigation}) => {
+  const DATA = [
+    {
+      id: '1',
+      songname: 'Hackathon 2023,Indore Institute of science and technology',
+      imageUrl:
+        'https://media.istockphoto.com/id/1189767039/vector/hackathon-concept-card-poster-paper-art-design-vector.jpg?s=612x612&w=0&k=20&c=WDdWorasVBtvfMziuL51DjRMQRz9wVd1yPtBp1y3Ey8=',
+      date: '04/03/2023',
+    },
+    {
+      id: '2',
+      songname: 'Cultural Fest 2023,Indore Institute of science and Technology',
+      imageUrl:
+        'https://png.pngtree.com/thumb_back/fh260/background/20190223/ourmid/pngtree-color-atmosphere-campus-singing-program-background-design-backgroundsinging-program-backgroundmicrophonesingergeometric-image_70039.jpg',
+      date: '04/03/2023',
+    },
+    {
+      id: '3',
+      songname:
+        'Debate competition 2023,Indore Institute of science and technology',
+      imageUrl:
+        'https://www.shutterstock.com/image-vector/political-debate-concept-candidates-speaking-260nw-2252935865.jpg',
+      date: '04/03/2023',
+    },
+    {
+      id: '4',
+      songname: 'Cultural Fest 2023,Indore Institute of science and Technology',
+      imageUrl:
+        'https://png.pngtree.com/thumb_back/fh260/background/20190223/ourmid/pngtree-color-atmosphere-campus-singing-program-background-design-backgroundsinging-program-backgroundmicrophonesingergeometric-image_70039.jpg',
+      date: '04/03/2023',
+    },
+    {
+      id: '5',
+      songname:
+        'Debate competition 2023,Indore Institute of science and technology',
+      imageUrl:
+        'https://www.shutterstock.com/image-vector/political-debate-concept-candidates-speaking-260nw-2252935865.jpg',
+      date: '04/03/2023',
+    },
+    {
+      id: '6',
+      songname: 'Hackathon 2023,Indore Institute of science and technology',
+      imageUrl:
+        'https://media.istockphoto.com/id/1189767039/vector/hackathon-concept-card-poster-paper-art-design-vector.jpg?s=612x612&w=0&k=20&c=WDdWorasVBtvfMziuL51DjRMQRz9wVd1yPtBp1y3Ey8=',
+      date: '04/03/2023',
+    },
+  ];
+  const renderItem2 = ({item}) => {
+    return (
+      <View style={styles.cardView2}>
+        <Sslist
+          songname={item.songname}
+          navigation={undefined}
+          imageUrl={item.imageUrl}
+          date={item.date}
+        />
+      </View>
+    );
   };
   const [modalVisible, setModalVisible] = useState(false);
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior="height"
-      enabled={false}>
+    <View style={styles.container}>
       <Modal
         animationType="fade"
         transparent={true}
@@ -52,7 +81,9 @@ const Dashboard = ({navigation}) => {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <View style={{flex: 0.05}}>
-              <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
+              <TouchableOpacity
+                style={{marginStart:'2%'}}
+                onPress={() => setModalVisible(!modalVisible)}>
                 <Entypo name={'cross'} size={35} color={'black'} />
               </TouchableOpacity>
             </View>
@@ -239,14 +270,12 @@ const Dashboard = ({navigation}) => {
                 justifyContent: 'center',
                 alignContent: 'center',
               }}>
-              <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-                <Image
-                  source={{
-                    uri: 'https://i.pinimg.com/originals/d1/94/d7/d194d7193cd245643591d6e90c8bfdbc.jpg',
-                  }}
-                  style={styles.logoStyle}
-                />
-              </TouchableOpacity>
+              <Image
+                source={{
+                  uri: 'https://i.pinimg.com/originals/d1/94/d7/d194d7193cd245643591d6e90c8bfdbc.jpg',
+                }}
+                style={styles.logoStyle}
+              />
             </View>
           </View>
         </View>
@@ -294,152 +323,33 @@ const Dashboard = ({navigation}) => {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={{flex: 0.25}}>
+      <View style={{flex: 0.08}}>
         <Text
           style={{
-            color: '#343333',
-            fontSize: 26,
+            fontSize: 25,
             fontWeight: '600',
-            marginStart: '5%',
+            marginStart: '3%',
+            color: '#343333',
           }}>
-          What's New Today,
+          Upcoming Events,
         </Text>
-        <View
-          style={{
-            flex: 0.9,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <View
-            style={{
-              flex: 0.9,
-              backgroundColor: '#458BE7',
-              width: '92%',
-              borderRadius: 13,
-              flexDirection: 'row',
-            }}>
-            <View
-              style={{
-                flex: 0.5,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <View
-                style={{
-                  flex: 0.7,
-                  backgroundColor: '#458BE7',
-                  borderWidth: 1,
-                  width: '50%',
-                  borderColor: 'black',
-                  borderRadius: 60,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                <Text style={{color: 'white', fontWeight: '400', fontSize: 45}}>
-                  A
-                </Text>
-              </View>
-            </View>
-            <View
-              style={{
-                flex: 0.5,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Text style={{color: 'white', fontSize: 10}}>Attendance</Text>
-              <Text style={{color: 'white', fontSize: 45}}>82%</Text>
-              <View
-                style={{
-                  height: 30,
-                  width: 60,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backgroundColor: '#454747',
-                  borderRadius: 10,
-                }}>
-                <Text style={{color: 'white'}}>Score</Text>
-              </View>
-            </View>
-          </View>
-        </View>
+        <Text style={{marginStart: '4%', fontSize: 11, color: '#343333'}}>
+          Get updates on upcoming events..!
+        </Text>
       </View>
-      <View style={{flex: 0.55}}>
-        <View style={{flex: 0.15}}>
-          <Text
-            style={{
-              color: '#343333',
-              fontSize: 20,
-              fontWeight: '500',
-              marginStart: '5%',
-            }}>
-            Things to do,
-          </Text>
-          <Text style={{color: '#343333', fontSize: 13, marginStart: '5%'}}>
-            update yourself for better
-          </Text>
-        </View>
-        <View style={{flex: 0.85}}>
-          <ScrollView>
-            <View style={styles.Item}>
-              {taskItems.map((item, index) => {
-                return (
-                  <TouchableOpacity
-                    key={index}
-                    onPress={() => completeTask(index)}>
-                    <Task text={item} />
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
-          </ScrollView>
-        </View>
+      <View style={{flex: 0.85}}>
+        <FlatList
+          data={DATA}
+          renderItem={renderItem2}
+          keyExtractor={item => item.id}
+        />
       </View>
-
-      <View style={{flex: 0.075, flexDirection: 'row'}}>
-        <View
-          style={{
-            // backgroundColor: 'yellow',
-            flex: 0.7,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <TextInput
-            style={{
-              height: '80%',
-              width: '95%',
-              backgroundColor: '#a9cbff',
-              borderRadius: 10,
-            }}
-            value={task}
-            onChangeText={text => setTask(text)}
-            placeholder="Write Task"
-          />
-        </View>
-        <View
-          style={{flex: 0.3, justifyContent: 'center', alignContent: 'center'}}>
-          <TouchableOpacity onPress={() => handleAddTask()}>
-            <View
-              style={{
-                height: '87%',
-                width: '95%',
-                borderRadius: 10,
-                backgroundColor: '#4E5254',
-                marginTop: '2%',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <Text style={{color: 'white', fontSize: 15, fontWeight: '500'}}>
-                Add Task
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </KeyboardAvoidingView>
+    </View>
   );
 };
 
-export default Dashboard;
+export default Events;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -447,18 +357,16 @@ const styles = StyleSheet.create({
   },
   logoStyle: {
     width: '95%',
-    height: '99%',
+    height: '95%',
     //elevation: 10,
     borderRadius: 50,
   },
-  Item: {
-    marginHorizontal: '5%',
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    backgroundColor: '#00000050',
+  cardView2: {
+    width: '95%',
+    marginTop: 10,
+    height: 270,
+    marginHorizontal: 10,
+    borderRadius: 5,
   },
   modalView: {
     margin: '3%',
@@ -477,10 +385,17 @@ const styles = StyleSheet.create({
     height: '95%',
     width: '65%',
   },
+
   button: {
     borderRadius: 20,
     padding: 10,
     elevation: 2,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    backgroundColor: '#00000050',
   },
   buttonOpen: {
     backgroundColor: '#F194FF',

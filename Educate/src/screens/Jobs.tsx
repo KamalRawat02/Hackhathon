@@ -1,46 +1,105 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  ScrollView,
-  TextInput,
-  Alert,
-  Modal,
-  Pressable,
-} from 'react-native';
-import Auth from '@react-native-firebase/auth';
-import {useNavigation, StackActions} from '@react-navigation/native';
-import {KeyboardAvoidingView} from 'react-native';
-import {Image, ScreenWidth} from '@rneui/base';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Feather from 'react-native-vector-icons/Feather';
+import { StackActions } from '@react-navigation/native';
+import React, { useState } from 'react';
+import {Alert, FlatList, Image, Modal, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
+import Feather from 'react-native-vector-icons/Feather';
 import Octicons from 'react-native-vector-icons/Octicons';
-import Task from '../components/Task';
-import {BackHandler} from 'react-native/Libraries/Utilities/BackHandler';
-import VideoResources from './VideoResources';
-const Dashboard = ({navigation}) => {
-  const [task, setTask] = useState('');
-  const [taskItems, setTaskItems] = useState([]);
-  const handleAddTask = () => {
-    setTaskItems([...taskItems, task]);
-    setTask('');
-    console.log(taskItems);
-  };
-  const completeTask = index => {
-    let itemsCopy = [...taskItems];
-    itemsCopy.splice(index, 1);
-    setTaskItems(itemsCopy);
+import Joblist from '../components/jobtab';
+
+const Jobs = ({navigation}) => {
+  const DATA = [
+    {
+      id: '1',
+      title: 'Pythone Fresher',
+      companyname: 'Powerestics IT Services Private Ltd',
+      address: 'Chennai,Tamil Nadu',
+      stipend: '15000',
+      jobtype: 'Part-time',
+      date: '04/03/2023',
+    },
+    {
+      id: '2',
+      title: 'Java Fresher',
+      companyname: 'Openware computing services Pvt Ltd',
+      address: 'Chennai,Tamil Nadu',
+      stipend: '60000',
+      jobtype: 'Full-time',
+      date: '06/04/2023',
+    },
+    {
+      id: '3',
+      title: 'Manual Tester - Fresher',
+      companyname: 'Quixy',
+      address: 'Hyderabad,Telangana',
+      stipend: '25000',
+      jobtype: 'Full-time',
+      date: '06/04/2023',
+    },
+    {
+      id: '4',
+      title: 'Fresher Software Developer',
+      companyname: 'Nest Tech',
+      address: 'Hyderabad,Telangana',
+      stipend: '14552',
+      jobtype: 'Full-time',
+      date: '06/04/2023',
+    },
+    {
+      id: '5',
+      title: 'Pythone Fresher',
+      companyname: 'Powerestics IT Services Private Ltd',
+      address: 'Chennai,Tamil Nadu',
+      stipend: '15000',
+      jobtype: 'Part-time',
+      date: '04/03/2023',
+    },
+    {
+      id: '6',
+      title: 'Java Fresher',
+      companyname: 'Openware computing services Pvt Ltd',
+      address: 'Chennai,Tamil Nadu',
+      stipend: '60000',
+      jobtype: 'Full-time',
+      date: '06/04/2023',
+    },
+    {
+      id: '7',
+      title: 'Manual Tester - Fresher',
+      companyname: 'Quixy',
+      address: 'Hyderabad,Telangana',
+      stipend: '25000',
+      jobtype: 'Full-time',
+      date: '06/04/2023',
+    },
+    {
+      id: '8',
+      title: 'Fresher Software Developer',
+      companyname: 'Nest Tech',
+      address: 'Hyderabad,Telangana',
+      stipend: '14552',
+      jobtype: 'Full-time',
+      date: '06/04/2023',
+    },
+  ];
+  const renderItem2 = ({item}) => {
+    return (
+      <View style={styles.cardView2}>
+        <Joblist
+          title={item.title}
+          navigation={undefined}
+          companyname={item.companyname}
+          stipend={item.stipend}
+          jobtype={item.jobtype}
+          date={item.date}
+          address={item.address}
+        />
+      </View>
+    );
   };
   const [modalVisible, setModalVisible] = useState(false);
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior="height"
-      enabled={false}>
+    <View style={styles.container}>
       <Modal
         animationType="fade"
         transparent={true}
@@ -239,14 +298,12 @@ const Dashboard = ({navigation}) => {
                 justifyContent: 'center',
                 alignContent: 'center',
               }}>
-              <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-                <Image
-                  source={{
-                    uri: 'https://i.pinimg.com/originals/d1/94/d7/d194d7193cd245643591d6e90c8bfdbc.jpg',
-                  }}
-                  style={styles.logoStyle}
-                />
-              </TouchableOpacity>
+              <Image
+                source={{
+                  uri: 'https://i.pinimg.com/originals/d1/94/d7/d194d7193cd245643591d6e90c8bfdbc.jpg',
+                }}
+                style={styles.logoStyle}
+              />
             </View>
           </View>
         </View>
@@ -294,152 +351,33 @@ const Dashboard = ({navigation}) => {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={{flex: 0.25}}>
+      <View style={{flex: 0.08}}>
         <Text
           style={{
-            color: '#343333',
-            fontSize: 26,
+            fontSize: 25,
             fontWeight: '600',
-            marginStart: '5%',
+            marginStart: '3%',
+            color: '#343333',
           }}>
-          What's New Today,
+          Opportunities to Grab,
         </Text>
-        <View
-          style={{
-            flex: 0.9,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <View
-            style={{
-              flex: 0.9,
-              backgroundColor: '#458BE7',
-              width: '92%',
-              borderRadius: 13,
-              flexDirection: 'row',
-            }}>
-            <View
-              style={{
-                flex: 0.5,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <View
-                style={{
-                  flex: 0.7,
-                  backgroundColor: '#458BE7',
-                  borderWidth: 1,
-                  width: '50%',
-                  borderColor: 'black',
-                  borderRadius: 60,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                <Text style={{color: 'white', fontWeight: '400', fontSize: 45}}>
-                  A
-                </Text>
-              </View>
-            </View>
-            <View
-              style={{
-                flex: 0.5,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Text style={{color: 'white', fontSize: 10}}>Attendance</Text>
-              <Text style={{color: 'white', fontSize: 45}}>82%</Text>
-              <View
-                style={{
-                  height: 30,
-                  width: 60,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backgroundColor: '#454747',
-                  borderRadius: 10,
-                }}>
-                <Text style={{color: 'white'}}>Score</Text>
-              </View>
-            </View>
-          </View>
-        </View>
+        <Text style={{marginStart: '4%', fontSize: 11, color: '#343333'}}>
+          Lets Apply..!
+        </Text>
       </View>
-      <View style={{flex: 0.55}}>
-        <View style={{flex: 0.15}}>
-          <Text
-            style={{
-              color: '#343333',
-              fontSize: 20,
-              fontWeight: '500',
-              marginStart: '5%',
-            }}>
-            Things to do,
-          </Text>
-          <Text style={{color: '#343333', fontSize: 13, marginStart: '5%'}}>
-            update yourself for better
-          </Text>
-        </View>
-        <View style={{flex: 0.85}}>
-          <ScrollView>
-            <View style={styles.Item}>
-              {taskItems.map((item, index) => {
-                return (
-                  <TouchableOpacity
-                    key={index}
-                    onPress={() => completeTask(index)}>
-                    <Task text={item} />
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
-          </ScrollView>
-        </View>
+      <View style={{flex: 0.85}}>
+        <FlatList
+          data={DATA}
+          renderItem={renderItem2}
+          keyExtractor={item => item.id}
+        />
       </View>
-
-      <View style={{flex: 0.075, flexDirection: 'row'}}>
-        <View
-          style={{
-            // backgroundColor: 'yellow',
-            flex: 0.7,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <TextInput
-            style={{
-              height: '80%',
-              width: '95%',
-              backgroundColor: '#a9cbff',
-              borderRadius: 10,
-            }}
-            value={task}
-            onChangeText={text => setTask(text)}
-            placeholder="Write Task"
-          />
-        </View>
-        <View
-          style={{flex: 0.3, justifyContent: 'center', alignContent: 'center'}}>
-          <TouchableOpacity onPress={() => handleAddTask()}>
-            <View
-              style={{
-                height: '87%',
-                width: '95%',
-                borderRadius: 10,
-                backgroundColor: '#4E5254',
-                marginTop: '2%',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <Text style={{color: 'white', fontSize: 15, fontWeight: '500'}}>
-                Add Task
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </KeyboardAvoidingView>
+    </View>
+    //</View>
   );
 };
 
-export default Dashboard;
+export default Jobs;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -447,18 +385,16 @@ const styles = StyleSheet.create({
   },
   logoStyle: {
     width: '95%',
-    height: '99%',
+    height: '95%',
     //elevation: 10,
     borderRadius: 50,
   },
-  Item: {
-    marginHorizontal: '5%',
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    backgroundColor: '#00000050',
+  cardView2: {
+    width: '95%',
+    marginTop: 10,
+    height: 150,
+    marginHorizontal: 10,
+    borderRadius: 5,
   },
   modalView: {
     margin: '3%',
@@ -481,6 +417,12 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     elevation: 2,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    backgroundColor: '#00000050',
   },
   buttonOpen: {
     backgroundColor: '#F194FF',

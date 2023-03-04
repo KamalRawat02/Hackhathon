@@ -1,58 +1,97 @@
 /* eslint-disable react-native/no-inline-styles */
+import {StackActions} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {
   View,
-  Text,
-  TouchableOpacity,
   StyleSheet,
-  ScrollView,
   TextInput,
+  Text,
+  Image,
+  TouchableOpacity,
   Alert,
   Modal,
-  Pressable,
+  FlatList,
 } from 'react-native';
-import Auth from '@react-native-firebase/auth';
-import {useNavigation, StackActions} from '@react-navigation/native';
-import {KeyboardAvoidingView} from 'react-native';
-import {Image, ScreenWidth} from '@rneui/base';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Feather from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
+import Feather from 'react-native-vector-icons/Feather';
 import Octicons from 'react-native-vector-icons/Octicons';
-import Task from '../components/Task';
-import {BackHandler} from 'react-native/Libraries/Utilities/BackHandler';
-import VideoResources from './VideoResources';
-const Dashboard = ({navigation}) => {
-  const [task, setTask] = useState('');
-  const [taskItems, setTaskItems] = useState([]);
-  const handleAddTask = () => {
-    setTaskItems([...taskItems, task]);
-    setTask('');
-    console.log(taskItems);
-  };
-  const completeTask = index => {
-    let itemsCopy = [...taskItems];
-    itemsCopy.splice(index, 1);
-    setTaskItems(itemsCopy);
-  };
+import Book from '../components/Books';
+import Road from '../components/Road';
+
+const Cheat = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const DATA = [
+    {
+      id: '1',
+      songname: 'Web Dev',
+      imageUrl:
+        'https://www.codecademy.com/resources/cheatsheets/subject/web-development',
+      low: 'Full Stack Development',
+    },
+    {
+      id: '2',
+      songname: 'ML',
+      imageUrl:
+        'https://ml-cheatsheet.readthedocs.io/',
+      low: 'Machine Learning',
+    },
+    {
+      id: '3',
+      songname: 'Data Analysis',
+      imageUrl:
+        'https://www.kaggle.com/getting-started/167694',
+      low: 'Data Operation',
+    },
+    {
+      id: '4',
+      songname: 'MERN',
+      imageUrl:
+        'https://dev.to/thamaraiselvam/mean-stack-cheat-sheet-5a1n',
+      low: 'Full Stack Development',
+    },
+    {
+      id: '5',
+      songname: 'DSA',
+      imageUrl:
+        'https://cheatography.com/burcuco/cheat-sheets/data-structures-and-algorithms/',
+      low: 'Data Sctructure',
+    },
+    {
+      id: '6',
+      songname: 'MEAN',
+      imageUrl:
+        'https://morioh.com/p/7045903b810e',
+      low: 'Full Stack Deveklopment',
+    },
+  ];
+  const renderItem2 = ({item}) => {
+    return (
+      <View style={styles.cardView2}>
+        <Road
+          songname={item.songname}
+          navigation={undefined}
+          imageUrl={item.imageUrl}
+          low={item.low}
+        />
+      </View>
+    );
+  };
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior="height"
-      enabled={false}>
+    <View style={styles.container}>
       <Modal
         animationType="fade"
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
+          //Alert.alert('Modal has been closed.');
           setModalVisible(!modalVisible);
         }}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <View style={{flex: 0.05}}>
-              <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
+              <TouchableOpacity
+                style={{marginStart: '2%'}}
+                onPress={() => setModalVisible(!modalVisible)}>
                 <Entypo name={'cross'} size={35} color={'black'} />
               </TouchableOpacity>
             </View>
@@ -194,29 +233,6 @@ const Dashboard = ({navigation}) => {
                 </View>
               </TouchableOpacity>
             </View>
-            <View
-              style={{
-                flex: 0.1,
-                // backgroundColor: 'blue',
-              }}>
-              <TouchableOpacity
-                onPress={async () => {
-                  await Auth().signOut();
-                  navigation.dispatch(StackActions.replace('SignUpScreen'));
-                  // navigation.navigate('Login');
-                }}>
-                <Text
-                  style={{
-                    color: 'gray',
-                    fontSize: 20,
-                    fontWeight: '500',
-                    marginStart: '6%',
-                    marginTop: '3%',
-                  }}>
-                  Log Out
-                </Text>
-              </TouchableOpacity>
-            </View>
           </View>
         </View>
       </Modal>
@@ -239,14 +255,12 @@ const Dashboard = ({navigation}) => {
                 justifyContent: 'center',
                 alignContent: 'center',
               }}>
-              <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-                <Image
-                  source={{
-                    uri: 'https://i.pinimg.com/originals/d1/94/d7/d194d7193cd245643591d6e90c8bfdbc.jpg',
-                  }}
-                  style={styles.logoStyle}
-                />
-              </TouchableOpacity>
+              <Image
+                source={{
+                  uri: 'https://i.pinimg.com/originals/d1/94/d7/d194d7193cd245643591d6e90c8bfdbc.jpg',
+                }}
+                style={styles.logoStyle}
+              />
             </View>
           </View>
         </View>
@@ -294,152 +308,33 @@ const Dashboard = ({navigation}) => {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={{flex: 0.25}}>
+      <View style={{flex: 0.08}}>
         <Text
           style={{
-            color: '#343333',
-            fontSize: 26,
+            fontSize: 25,
             fontWeight: '600',
-            marginStart: '5%',
+            marginStart: '3%',
+            color: '#343333',
           }}>
-          What's New Today,
+          Roadmaps,
         </Text>
-        <View
-          style={{
-            flex: 0.9,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <View
-            style={{
-              flex: 0.9,
-              backgroundColor: '#458BE7',
-              width: '92%',
-              borderRadius: 13,
-              flexDirection: 'row',
-            }}>
-            <View
-              style={{
-                flex: 0.5,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <View
-                style={{
-                  flex: 0.7,
-                  backgroundColor: '#458BE7',
-                  borderWidth: 1,
-                  width: '50%',
-                  borderColor: 'black',
-                  borderRadius: 60,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                <Text style={{color: 'white', fontWeight: '400', fontSize: 45}}>
-                  A
-                </Text>
-              </View>
-            </View>
-            <View
-              style={{
-                flex: 0.5,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Text style={{color: 'white', fontSize: 10}}>Attendance</Text>
-              <Text style={{color: 'white', fontSize: 45}}>82%</Text>
-              <View
-                style={{
-                  height: 30,
-                  width: 60,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backgroundColor: '#454747',
-                  borderRadius: 10,
-                }}>
-                <Text style={{color: 'white'}}>Score</Text>
-              </View>
-            </View>
-          </View>
-        </View>
+        <Text style={{marginStart: '4%', fontSize: 11, color: '#343333'}}>
+          Road that Guide you for Better,
+        </Text>
       </View>
-      <View style={{flex: 0.55}}>
-        <View style={{flex: 0.15}}>
-          <Text
-            style={{
-              color: '#343333',
-              fontSize: 20,
-              fontWeight: '500',
-              marginStart: '5%',
-            }}>
-            Things to do,
-          </Text>
-          <Text style={{color: '#343333', fontSize: 13, marginStart: '5%'}}>
-            update yourself for better
-          </Text>
-        </View>
-        <View style={{flex: 0.85}}>
-          <ScrollView>
-            <View style={styles.Item}>
-              {taskItems.map((item, index) => {
-                return (
-                  <TouchableOpacity
-                    key={index}
-                    onPress={() => completeTask(index)}>
-                    <Task text={item} />
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
-          </ScrollView>
-        </View>
+      <View style={{flex: 0.85}}>
+        <FlatList
+          data={DATA}
+          //numColumns={2}
+          renderItem={renderItem2}
+          keyExtractor={item => item.id}
+        />
       </View>
-
-      <View style={{flex: 0.075, flexDirection: 'row'}}>
-        <View
-          style={{
-            // backgroundColor: 'yellow',
-            flex: 0.7,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <TextInput
-            style={{
-              height: '80%',
-              width: '95%',
-              backgroundColor: '#a9cbff',
-              borderRadius: 10,
-            }}
-            value={task}
-            onChangeText={text => setTask(text)}
-            placeholder="Write Task"
-          />
-        </View>
-        <View
-          style={{flex: 0.3, justifyContent: 'center', alignContent: 'center'}}>
-          <TouchableOpacity onPress={() => handleAddTask()}>
-            <View
-              style={{
-                height: '87%',
-                width: '95%',
-                borderRadius: 10,
-                backgroundColor: '#4E5254',
-                marginTop: '2%',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <Text style={{color: 'white', fontSize: 15, fontWeight: '500'}}>
-                Add Task
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </KeyboardAvoidingView>
+    </View>
   );
 };
 
-export default Dashboard;
+export default Cheat;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -447,18 +342,16 @@ const styles = StyleSheet.create({
   },
   logoStyle: {
     width: '95%',
-    height: '99%',
+    height: '95%',
     //elevation: 10,
     borderRadius: 50,
   },
-  Item: {
-    marginHorizontal: '5%',
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    backgroundColor: '#00000050',
+  cardView2: {
+    width: '95%',
+    marginTop: 10,
+    height: 100,
+    marginHorizontal: 10,
+    borderRadius: 5,
   },
   modalView: {
     margin: '3%',
@@ -477,10 +370,17 @@ const styles = StyleSheet.create({
     height: '95%',
     width: '65%',
   },
+
   button: {
     borderRadius: 20,
     padding: 10,
     elevation: 2,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    backgroundColor: '#00000050',
   },
   buttonOpen: {
     backgroundColor: '#F194FF',
