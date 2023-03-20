@@ -7,6 +7,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Sslist from '../components/list2';
+import ModelComp from '../components/ModComp';
 
 const Events = ({navigation}) => {
   const DATA = [
@@ -69,276 +70,113 @@ const Events = ({navigation}) => {
   };
   const [modalVisible, setModalVisible] = useState(false);
   return (
-    <View style={styles.container}>
-       <Modal
-        animationType="fade"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          //Alert.alert('Modal has been closed.');
-          setModalVisible(!modalVisible);
-        }}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <View style={{flex: 0.05}}>
-              <TouchableOpacity
-                style={{marginStart: '2%'}}
-                onPress={() => setModalVisible(!modalVisible)}>
-                <Entypo name={'cross'} size={35} color={'black'} />
-              </TouchableOpacity>
-            </View>
-            <View style={{flex: 0.3, marginTop: '5%'}}>
-              <Text
-                style={{
-                  color: 'black',
-                  fontSize: 20,
-                  fontWeight: '600',
-                  marginStart: '2%',
-                }}>
-                Time Table
-              </Text>
-
-              <Text style={{marginStart: '2%'}}>Let's Organize Yourself,</Text>
+    <>
+      <View style={styles.container}>
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            //Alert.alert('Modal has been closed.');
+            setModalVisible(!modalVisible);
+          }}>
+          <ModelComp naviagtion={undefined} />
+        </Modal>
+        <View style={{flex: 0.125, flexDirection: 'row'}}>
+          <View style={{flex: 0.15}}>
+            <View
+              style={{
+                width: 45,
+                height: 45,
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginTop: 25,
+                marginStart: '15%',
+              }}>
               <View
                 style={{
-                  height: '70%',
-                  width: '85%',
-                  //backgroundColor: 'red',
-                  marginHorizontal: '7.5%',
-                  marginVertical: '5%',
-                  borderRadius: 10,
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: 50,
+                  justifyContent: 'center',
+                  alignContent: 'center',
                 }}>
                 <Image
-                  source={require('../assests/time.png')}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    borderRadius: 10,
-                    //marginTop: 3,
+                  source={{
+                    uri: 'https://i.pinimg.com/originals/d1/94/d7/d194d7193cd245643591d6e90c8bfdbc.jpg',
                   }}
+                  style={styles.logoStyle}
                 />
               </View>
             </View>
-            <View style={{flex: 0.4, marginTop: '5%'}}>
-              <Text
-                style={{
-                  fontSize: 22,
-                  fontWeight: '600',
-                  color: 'black',
-                  marginHorizontal: '5%',
-                  marginTop: '5%',
-                }}>
-                Resouces
-              </Text>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('VideoResources')}>
-                <View
-                  style={{
-                    height: 43,
-                    width: 220,
-                    backgroundColor: '#c0cdde',
-                    marginHorizontal: '10%',
-                    marginTop: '8%',
-                    borderRadius: 10,
-                  }}>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      fontWeight: '600',
-                      marginStart: '8%',
-                    }}>
-                    Video Resources
-                  </Text>
-                  <Text style={{fontSize: 8, marginStart: '5%'}}>
-                    Video to help you grow
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('BookResources')}>
-                <View
-                  style={{
-                    height: 43,
-                    width: 220,
-                    backgroundColor: '#c0cdde',
-                    marginHorizontal: '10%',
-                    marginTop: '8%',
-                    borderRadius: 10,
-                  }}>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      fontWeight: '600',
-                      marginStart: '5%',
-                    }}>
-                    Book Resources
-                  </Text>
-                  <Text style={{fontSize: 8, marginStart: '5%'}}>
-                    Books to Refer
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate('Roadmaps')}>
-                <View
-                  style={{
-                    height: 43,
-                    width: 220,
-                    backgroundColor: '#c0cdde',
-                    marginHorizontal: '10%',
-                    marginTop: '8%',
-                    borderRadius: 10,
-                  }}>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      fontWeight: '600',
-                      marginStart: '5%',
-                    }}>
-                    Roadmaps
-                  </Text>
-                  <Text style={{fontSize: 8, marginStart: '5%'}}>
-                    A guide to help you out
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate('Cheat')}>
-                <View
-                  style={{
-                    height: 43,
-                    width: 220,
-                    backgroundColor: '#c0cdde',
-                    marginHorizontal: '10%',
-                    marginTop: '8%',
-                    borderRadius: 10,
-                  }}>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      fontWeight: '600',
-                      marginStart: '5%',
-                    }}>
-                    Cheat-Sheets
-                  </Text>
-                  <Text style={{fontSize: 8, marginStart: '5%'}}>
-                    To learn on the Go.
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={async () => {
-                  await Auth().signOut();
-                  navigation.dispatch(StackActions.replace('SignUpScreen'));
-                  // navigation.navigate('Login');
-                }}>
-                <Text
-                  style={{
-                    color: 'gray',
-                    fontSize: 20,
-                    fontWeight: '500',
-                    marginStart: '6%',
-                    marginTop: '3%',
-                  }}>
-                  Log Out
-                </Text>
-              </TouchableOpacity>
-            </View>
           </View>
-        </View>
-      </Modal>
-      <View style={{flex: 0.125, flexDirection: 'row'}}>
-        <View style={{flex: 0.15}}>
           <View
             style={{
-              width: 45,
-              height: 45,
-              alignItems: 'center',
+              flex: 0.4,
+              //backgroundColor: 'blue',
               justifyContent: 'center',
-              marginTop: 25,
-              marginStart: '15%',
+            }}>
+            <Text
+              style={{
+                color: '#343333',
+                fontSize: 25,
+                fontWeight: '600',
+                marginStart: '5%',
+                marginBottom: '5%',
+              }}>
+              Hi, Kate
+            </Text>
+          </View>
+          <View
+            style={{
+              flex: 0.45,
+              flexDirection: 'row',
+              justifyContent: 'flex-end',
             }}>
             <View
               style={{
-                width: '100%',
-                height: '100%',
-                borderRadius: 50,
+                flex: 0.3,
+                // backgroundColor: 'green',
                 justifyContent: 'center',
-                alignContent: 'center',
+                alignItems: 'center',
               }}>
-              <Image
-                source={{
-                  uri: 'https://i.pinimg.com/originals/d1/94/d7/d194d7193cd245643591d6e90c8bfdbc.jpg',
-                }}
-                style={styles.logoStyle}
-              />
+              <Feather name={'bell'} size={27} color={'black'} />
             </View>
+            <TouchableOpacity
+              onPress={() => setModalVisible(true)}
+              style={{
+                flex: 0.3,
+                //backgroundColor: 'green',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Octicons name={'three-bars'} size={27} color={'black'} />
+            </TouchableOpacity>
           </View>
         </View>
-        <View
-          style={{
-            flex: 0.4,
-            //backgroundColor: 'blue',
-            justifyContent: 'center',
-          }}>
+        <View style={{flex: 0.08}}>
           <Text
             style={{
-              color: '#343333',
               fontSize: 25,
               fontWeight: '600',
-              marginStart: '5%',
-              marginBottom: '5%',
+              marginStart: '3%',
+              color: '#343333',
             }}>
-            Hi, Kate
+            Upcoming Events,
+          </Text>
+          <Text style={{marginStart: '4%', fontSize: 11, color: '#343333'}}>
+            Get updates on upcoming events..!
           </Text>
         </View>
-        <View
-          style={{
-            flex: 0.45,
-            flexDirection: 'row',
-            justifyContent: 'flex-end',
-          }}>
-          <View
-            style={{
-              flex: 0.3,
-              // backgroundColor: 'green',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <Feather name={'bell'} size={27} color={'black'} />
-          </View>
-          <TouchableOpacity
-            onPress={() => setModalVisible(true)}
-            style={{
-              flex: 0.3,
-              //backgroundColor: 'green',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <Octicons name={'three-bars'} size={27} color={'black'} />
-          </TouchableOpacity>
+        <View style={{flex: 0.85}}>
+          <FlatList
+            data={DATA}
+            renderItem={renderItem2}
+            keyExtractor={item => item.id}
+          />
         </View>
       </View>
-      <View style={{flex: 0.08}}>
-        <Text
-          style={{
-            fontSize: 25,
-            fontWeight: '600',
-            marginStart: '3%',
-            color: '#343333',
-          }}>
-          Upcoming Events,
-        </Text>
-        <Text style={{marginStart: '4%', fontSize: 11, color: '#343333'}}>
-          Get updates on upcoming events..!
-        </Text>
-      </View>
-      <View style={{flex: 0.85}}>
-        <FlatList
-          data={DATA}
-          renderItem={renderItem2}
-          keyExtractor={item => item.id}
-        />
-      </View>
-    </View>
+    </>
   );
 };
 
