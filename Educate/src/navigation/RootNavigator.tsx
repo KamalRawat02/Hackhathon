@@ -17,6 +17,7 @@ import BookResources from '../screens/BookResources';
 import Comment from '../screens/Comment';
 import Roadmaps from '../screens/Roadmap';
 import Cheat from '../screens/cheat';
+import SmartID from '../screens/smartID';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -134,6 +135,11 @@ const RootNavigator = () => {
       <Stack.Screen
         name="Cheat"
         component={Cheat}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="SmartID"
+        component={SmartID}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
