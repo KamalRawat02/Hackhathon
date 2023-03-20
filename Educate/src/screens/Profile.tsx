@@ -10,7 +10,7 @@ import {ScreenWidth} from '@rneui/base';
 import CustomInput from '../components/CustomInput';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Octicons from 'react-native-vector-icons/Octicons';
-const Profile = () => {
+const Profile = ({navigation}) => {
   const [name, setName] = useState('');
   const [enrol, setEnrol] = useState('');
   const [phone, setPhone] = useState('');
@@ -28,10 +28,12 @@ const Profile = () => {
       branch: branch,
     };
     await firestore().collection('Users').doc(ID).set(response);
+    navigation.navigate('SmartID');
   };
   const temp = async () => {
     const apk = await firestore().collection('Users').doc(ID).get();
     console.log(apk);
+    //  navigation.navigate({screen: 'SmartID'});
   };
   const cameraPermission = async () => {
     try {
@@ -51,7 +53,7 @@ const Profile = () => {
   };
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text style={{color:'black',fontSize:30,fontWeight:'600'}}>
+      <Text style={{color: 'black', fontSize: 30, fontWeight: '600'}}>
         Profile
       </Text>
       <View
@@ -63,7 +65,7 @@ const Profile = () => {
           elevation: 10,
         }}>
         <CustomInput
-          onChangeText={value => setName(value)}
+          onChangeText={(value: React.SetStateAction<string>) => setName(value)}
           value={name}
           heading={'Name'}
           leftIconType={
@@ -75,13 +77,17 @@ const Profile = () => {
           }
         />
         <CustomInput
-          onChangeText={value => setEnrol(value)}
+          onChangeText={(value: React.SetStateAction<string>) =>
+            setEnrol(value)
+          }
           value={enrol}
           heading={'Enrollment No.'}
           leftIconType={<Octicons name={'number'} size={24} color={'black'} />}
         />
         <CustomInput
-          onChangeText={value => setPhone(value)}
+          onChangeText={(value: React.SetStateAction<string>) =>
+            setPhone(value)
+          }
           value={phone}
           heading={'Phone No.'}
           leftIconType={
@@ -93,7 +99,9 @@ const Profile = () => {
           }
         />
         <CustomInput
-          onChangeText={value => setCourse(value)}
+          onChangeText={(value: React.SetStateAction<string>) =>
+            setCourse(value)
+          }
           value={course}
           heading={'Course'}
           leftIconType={
@@ -105,7 +113,9 @@ const Profile = () => {
           }
         />
         <CustomInput
-          onChangeText={value => setBranch(value)}
+          onChangeText={(value: React.SetStateAction<string>) =>
+            setBranch(value)
+          }
           value={branch}
           heading={'Branch'}
           leftIconType={
@@ -133,7 +143,9 @@ const Profile = () => {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <Text style={{color: 'white',fontWeight:'600',fontSize:17}}>Submit</Text>
+            <Text style={{color: 'white', fontWeight: '600', fontSize: 17}}>
+              Submit
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

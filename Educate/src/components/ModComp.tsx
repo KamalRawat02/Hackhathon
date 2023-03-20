@@ -2,12 +2,16 @@
 import React, {useState} from 'react';
 import {Alert, FlatList, Modal, TouchableOpacity} from 'react-native';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {StackActions, useNavigation} from '@react-navigation/native';
 import Entypo from 'react-native-vector-icons/Entypo';
 
 const ModelComp = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
+  function Auth() {
+    throw new Error('Function not implemented.');
+  }
+
   return (
     <View style={styles.centeredView}>
       <View style={styles.modalView}>
