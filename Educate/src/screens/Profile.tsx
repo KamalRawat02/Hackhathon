@@ -14,7 +14,7 @@ const Profile = () => {
   const [name, setName] = useState('');
   const [enrol, setEnrol] = useState('');
   const [phone, setPhone] = useState('');
-  const [age, setAge] = useState('');
+  const [imageData, setImageData] = useState();
   const [branch, setBranch] = useState('');
   const [course, setCourse] = useState('');
   const ID = auth().currentUser?.uid;
@@ -33,14 +33,32 @@ const Profile = () => {
     const apk = await firestore().collection('Users').doc(ID).get();
     console.log(apk);
   };
+  const cameraPermission = async () => {
+    try {
+      const result = await launchImageLibrary({mediaType: 'photo'});
+      setImageData(result);
+      console.log(imageData);
+      // const reference = storage().ref(imageData.assests[0].fileName);
+      // const pathfile = imageData.assests[0].uri;
+      // await reference.putFile(pathfile);
+      // const url = await storage()
+      //   .ref(imageData.assests[0].fileName)
+      //   .getDownloadURL();
+      // console.log(url);
+    } catch (err) {
+      console.warn(err);
+    }
+  };
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text style={{color:'black',fontSize:30,fontWeight:'600'}}>
-        Profile
-      </Text>
+      <View style={{flex: 0.1}}>
+        <Text style={{color: 'black', fontSize: 30, fontWeight: '600'}}>
+          Profile
+        </Text>
+      </View>
       <View
         style={{
-          flex: 0.7,
+          flex: 0.9,
           backgroundColor: 'white',
           width: '90%',
           borderRadius: 10,
@@ -117,7 +135,9 @@ const Profile = () => {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <Text style={{color: 'white',fontWeight:'600',fontSize:17}}>Submit</Text>
+            <Text style={{color: 'white', fontWeight: '600', fontSize: 17}}>
+              Submit
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

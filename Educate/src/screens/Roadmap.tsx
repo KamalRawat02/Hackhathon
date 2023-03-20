@@ -16,6 +16,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Book from '../components/Books';
+import ModelComp from '../components/ModComp';
 import Road from '../components/Road';
 import Video from '../components/VideoUrl';
 
@@ -26,42 +27,42 @@ const Roadmaps = ({navigation}) => {
       id: '1',
       songname: 'Web Dev',
       imageUrl:
-        'https://www.simplilearn.com/ice9/free_resources_article_thumb/c-for-loop.JPG',
+        'https://www.geeksforgeeks.org/roadmap-to-become-a-web-developer-in-2022/',
       low: 'Full Stack Development',
     },
     {
       id: '2',
       songname: 'ML',
       imageUrl:
-        'https://linuxhint.com/wp-content/uploads/2021/09/Programming-examples-cpp-02.png',
+        'https://www.codewithharry.com/blogpost/complete-ml-roadmap-for-beginners/',
       low: 'Machine Learning',
     },
     {
       id: '3',
       songname: 'Data Analysis',
       imageUrl:
-        'https://www.tutorialgateway.org/wp-content/uploads/C-Program-to-Calculate-Profit-or-Loss-1-1.png?ezimgfmt=ng:webp/ngcb214',
+        'https://careerfoundry.com/en/blog/data-analytics/how-to-become-a-data-analyst/',
       low: 'Data Operation',
     },
     {
       id: '4',
       songname: 'MERN',
       imageUrl:
-        'https://www.simplilearn.com/ice9/free_resources_article_thumb/c-for-loop.JPG',
+        'https://workat.tech/fullstack-development/article/fullstack-development-roadmap-mern-stack-8eqh1qepx6md',
       low: 'Full Stack Development',
     },
     {
       id: '5',
       songname: 'DSA',
       imageUrl:
-        'https://linuxhint.com/wp-content/uploads/2021/09/Programming-examples-cpp-02.png',
+        'https://www.codingninjas.com/codestudio/library/complete-data-structures-and-algorithms-roadmap-for-placements',
       low: 'Data Sctructure',
     },
     {
       id: '6',
       songname: 'MEAN',
       imageUrl:
-        'https://www.tutorialgateway.org/wp-content/uploads/C-Program-to-Calculate-Profit-or-Loss-1-1.png?ezimgfmt=ng:webp/ngcb214',
+        'https://www.scaler.com/topics/software-engineering/full-stack-developer-roadmap/',
       low: 'Full Stack Deveklopment',
     },
   ];
@@ -87,178 +88,7 @@ const Roadmaps = ({navigation}) => {
           //Alert.alert('Modal has been closed.');
           setModalVisible(!modalVisible);
         }}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <View style={{flex: 0.05}}>
-              <TouchableOpacity
-                style={{marginStart: '2%'}}
-                onPress={() => setModalVisible(!modalVisible)}>
-                <Entypo name={'cross'} size={35} color={'black'} />
-              </TouchableOpacity>
-            </View>
-            <View style={{flex: 0.3, marginTop: '5%'}}>
-              <Text
-                style={{
-                  color: 'black',
-                  fontSize: 20,
-                  fontWeight: '600',
-                  marginStart: '2%',
-                }}>
-                Time Table
-              </Text>
-
-              <Text style={{marginStart: '2%'}}>Let's Organize Yourself,</Text>
-              <View
-                style={{
-                  height: '70%',
-                  width: '85%',
-                  //backgroundColor: 'red',
-                  marginHorizontal: '7.5%',
-                  marginVertical: '5%',
-                  borderRadius: 10,
-                }}>
-                <Image
-                  source={require('../assests/time.png')}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    borderRadius: 10,
-                    //marginTop: 3,
-                  }}
-                />
-              </View>
-            </View>
-            <View style={{flex: 0.4, marginTop: '5%'}}>
-              <Text
-                style={{
-                  fontSize: 22,
-                  fontWeight: '600',
-                  color: 'black',
-                  marginHorizontal: '5%',
-                  marginTop: '5%',
-                }}>
-                Resouces
-              </Text>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('VideoResources')}>
-                <View
-                  style={{
-                    height: 40,
-                    width: 220,
-                    backgroundColor: '#c0cdde',
-                    marginHorizontal: '10%',
-                    marginTop: '5%',
-                    borderRadius: 10,
-                  }}>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      fontWeight: '600',
-                      marginStart: '5%',
-                    }}>
-                    Video Resources
-                  </Text>
-                  <Text style={{fontSize: 8, marginStart: '5%'}}>
-                    Video to help you grow
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('BookResources')}>
-                <View
-                  style={{
-                    height: 40,
-                    width: 220,
-                    backgroundColor: '#c0cdde',
-                    marginHorizontal: '10%',
-                    marginTop: '5%',
-                    borderRadius: 10,
-                  }}>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      fontWeight: '600',
-                      marginStart: '5%',
-                    }}>
-                    Book Resources
-                  </Text>
-                  <Text style={{fontSize: 8, marginStart: '5%'}}>
-                    Books to Refer
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate('Roadmaps')}>
-                <View
-                  style={{
-                    height: 40,
-                    width: 220,
-                    backgroundColor: '#c0cdde',
-                    marginHorizontal: '10%',
-                    marginTop: '5%',
-                    borderRadius: 10,
-                  }}>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      fontWeight: '600',
-                      marginStart: '5%',
-                    }}>
-                    Roadmaps
-                  </Text>
-                  <Text style={{fontSize: 8, marginStart: '5%'}}>
-                    A guide to help you out
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate('Cheat')}>
-                <View
-                  style={{
-                    height: 40,
-                    width: 220,
-                    backgroundColor: '#c0cdde',
-                    marginHorizontal: '10%',
-                    marginTop: '5%',
-                    borderRadius: 10,
-                  }}>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      fontWeight: '600',
-                      marginStart: '5%',
-                    }}>
-                    Cheat-Sheets
-                  </Text>
-                  <Text style={{fontSize: 8, marginStart: '5%'}}>
-                    To learn on the Go.
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-            <View
-              style={{
-                flex: 0.1,
-                // backgroundColor: 'blue',
-              }}>
-              <TouchableOpacity
-                onPress={async () => {
-                  await Auth().signOut();
-                  navigation.dispatch(StackActions.replace('SignUpScreen'));
-                  // navigation.navigate('Login');
-                }}>
-                <Text
-                  style={{
-                    color: 'gray',
-                    fontSize: 20,
-                    fontWeight: '500',
-                    marginStart: '6%',
-                    marginTop: '3%',
-                  }}>
-                  Log Out
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
+        <ModelComp />
       </Modal>
       <View style={{flex: 0.125, flexDirection: 'row'}}>
         <View style={{flex: 0.15}}>
@@ -302,7 +132,7 @@ const Roadmaps = ({navigation}) => {
               marginStart: '5%',
               marginBottom: '5%',
             }}>
-            Hi, Kate
+            Hi, there
           </Text>
         </View>
         <View

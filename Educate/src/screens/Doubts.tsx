@@ -1,13 +1,16 @@
 /* eslint-disable react-native/no-inline-styles */
-import { StackActions } from '@react-navigation/native';
-import React, { useState } from 'react';
+import {StackActions} from '@react-navigation/native';
+import React, {useState} from 'react';
 import {
   Alert,
+  Button,
   FlatList,
   Image,
   Modal,
   StyleSheet,
+  TextInput,
   TouchableOpacity,
+  KeyboardAvoidingView,
   View,
 } from 'react-native';
 import {Text} from 'react-native';
@@ -16,9 +19,16 @@ import Feather from 'react-native-vector-icons/Feather';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Doubtssc from '../components/doubtssc';
 import Sslist from '../components/list2';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import storage from '@react-native-firebase/storage';
+import ModelComp from '../components/ModComp';
 
 const Doubts = ({navigation}) => {
-  const DATA = [
+  const [doubtModal, setDoubtModal] = useState(false);
+  const [text, setText] = useState('');
+  const [imageData, setImageData] = useState();
+
+  const [DATA, setData] = useState([
     {
       id: '1',
       songname:
@@ -61,7 +71,7 @@ const Doubts = ({navigation}) => {
       imageUrl:
         'https://www.tutorialgateway.org/wp-content/uploads/C-Program-to-Calculate-Profit-or-Loss-1-1.png?ezimgfmt=ng:webp/ngcb214',
     },
-  ];
+  ]);
   const renderItem2 = ({item}) => {
     return (
       <View style={styles.cardView2}>
@@ -75,186 +85,78 @@ const Doubts = ({navigation}) => {
       </View>
     );
   };
+  const cameraPermission = async () => {
+    try {
+      const result = await launchImageLibrary({mediaType: 'photo'});
+      setImageData(result);
+      // console.log(url);
+    } catch (err) {
+      console.warn(err);
+    }
+  };
   const [modalVisible, setModalVisible] = useState(false);
+  const submitDoubt = () => {
+    const temp = {
+      id: '7',
+      songname: text,
+      imageUrl:
+        'https://user-images.githubusercontent.com/49961658/106075478-4fe97d00-60d3-11eb-9522-0b87eb266b65.png',
+    };
+    setData([...DATA, temp]);
+  };
   return (
     <View style={styles.container}>
+      <KeyboardAvoidingView behavior="height" enabled={false}>
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={doubtModal}
+          onRequestClose={() => {
+            // Alert.alert('Modal has been closed.');
+            setDoubtModal(!doubtModal);
+          }}>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: '#00000060',
+            }}>
+            <View
+              style={{
+                height: '40%',
+                width: '80%',
+                backgroundColor: 'white',
+                justifyContent: 'space-evenly',
+                alignItems: 'center',
+                borderRadius: 10,
+                elevation: 20,
+              }}>
+              <Button title="Select Image" onPress={() => cameraPermission()} />
+              <TextInput
+                style={{
+                  width: '90%',
+                  height: '15%',
+                  borderWidth: 1,
+                  padding: 10,
+                }}
+                onChangeText={value => setText(value)}
+                value={text}
+              />
+              <Button title="Submit" onPress={() => submitDoubt()} />
+            </View>
+          </View>
+        </Modal>
+      </KeyboardAvoidingView>
       <Modal
         animationType="fade"
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
+          //Alert.alert('Modal has been closed.');
           setModalVisible(!modalVisible);
         }}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <View style={{flex: 0.05}}>
-              <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
-                <Entypo name={'cross'} size={35} color={'black'} />
-              </TouchableOpacity>
-            </View>
-            <View style={{flex: 0.3, marginTop: '5%'}}>
-              <Text
-                style={{
-                  color: 'black',
-                  fontSize: 20,
-                  fontWeight: '600',
-                  marginStart: '2%',
-                }}>
-                Time Table
-              </Text>
-
-              <Text style={{marginStart: '2%'}}>Let's Organize Yourself,</Text>
-              <View
-                style={{
-                  height: '70%',
-                  width: '85%',
-                  //backgroundColor: 'red',
-                  marginHorizontal: '7.5%',
-                  marginVertical: '5%',
-                  borderRadius: 10,
-                }}>
-                <Image
-                  source={require('../assests/time.png')}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    borderRadius: 10,
-                    //marginTop: 3,
-                  }}
-                />
-              </View>
-            </View>
-            <View style={{flex: 0.4, marginTop: '5%'}}>
-              <Text
-                style={{
-                  fontSize: 22,
-                  fontWeight: '600',
-                  color: 'black',
-                  marginHorizontal: '5%',
-                  marginTop: '5%',
-                }}>
-                Resouces
-              </Text>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('VideoResources')}>
-                <View
-                  style={{
-                    height: 40,
-                    width: 220,
-                    backgroundColor: '#c0cdde',
-                    marginHorizontal: '10%',
-                    marginTop: '5%',
-                    borderRadius: 10,
-                  }}>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      fontWeight: '600',
-                      marginStart: '5%',
-                    }}>
-                    Video Resources
-                  </Text>
-                  <Text style={{fontSize: 8, marginStart: '5%'}}>
-                    Video to help you grow
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('BookResources')}>
-                <View
-                  style={{
-                    height: 40,
-                    width: 220,
-                    backgroundColor: '#c0cdde',
-                    marginHorizontal: '10%',
-                    marginTop: '5%',
-                    borderRadius: 10,
-                  }}>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      fontWeight: '600',
-                      marginStart: '5%',
-                    }}>
-                    Book Resources
-                  </Text>
-                  <Text style={{fontSize: 8, marginStart: '5%'}}>
-                    Books to Refer
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate('Roadmaps')}>
-                <View
-                  style={{
-                    height: 40,
-                    width: 220,
-                    backgroundColor: '#c0cdde',
-                    marginHorizontal: '10%',
-                    marginTop: '5%',
-                    borderRadius: 10,
-                  }}>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      fontWeight: '600',
-                      marginStart: '5%',
-                    }}>
-                    Roadmaps
-                  </Text>
-                  <Text style={{fontSize: 8, marginStart: '5%'}}>
-                    A guide to help you out
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate('Cheat')}>
-                <View
-                  style={{
-                    height: 40,
-                    width: 220,
-                    backgroundColor: '#c0cdde',
-                    marginHorizontal: '10%',
-                    marginTop: '5%',
-                    borderRadius: 10,
-                  }}>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      fontWeight: '600',
-                      marginStart: '5%',
-                    }}>
-                    Cheat-Sheets
-                  </Text>
-                  <Text style={{fontSize: 8, marginStart: '5%'}}>
-                    To learn on the Go.
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-            <View
-              style={{
-                flex: 0.1,
-                // backgroundColor: 'blue',
-              }}>
-              <TouchableOpacity
-                onPress={async () => {
-                  await Auth().signOut();
-                  navigation.dispatch(StackActions.replace('SignUpScreen'));
-                  // navigation.navigate('Login');
-                }}>
-                <Text
-                  style={{
-                    color: 'gray',
-                    fontSize: 20,
-                    fontWeight: '500',
-                    marginStart: '6%',
-                    marginTop: '3%',
-                  }}>
-                  Log Out
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
+        <ModelComp naviagtion={undefined} />
       </Modal>
       <View style={{flex: 0.125, flexDirection: 'row'}}>
         <View style={{flex: 0.15}}>
@@ -328,7 +230,7 @@ const Doubts = ({navigation}) => {
           </TouchableOpacity>
         </View>
       </View>
-    
+
       <View style={{flex: 0.85}}>
         <FlatList
           data={DATA}
@@ -336,6 +238,16 @@ const Doubts = ({navigation}) => {
           keyExtractor={item => item.id}
         />
       </View>
+      <TouchableOpacity
+        onPress={() => setDoubtModal(!doubtModal)}
+        style={{
+          position: 'absolute',
+          top: '90%',
+          left: '86%',
+          //backgroundColor: 'white',
+        }}>
+        <Feather name={'plus-circle'} size={40} color={'black'} />
+      </TouchableOpacity>
     </View>
   );
 };

@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -20,11 +20,15 @@ import Feather from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Task from '../components/Task';
-import {BackHandler} from 'react-native/Libraries/Utilities/BackHandler';
-import VideoResources from './VideoResources';
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
+
+
 const Dashboard = ({navigation}) => {
   const [task, setTask] = useState('');
   const [taskItems, setTaskItems] = useState([]);
+  const ID = auth().currentUser?.uid;
+
   const handleAddTask = () => {
     setTaskItems([...taskItems, task]);
     setTask('');
@@ -35,13 +39,37 @@ const Dashboard = ({navigation}) => {
     itemsCopy.splice(index, 1);
     setTaskItems(itemsCopy);
   };
+  useEffect(() => {
+    const data = firestore().collection('Users').doc(ID).get().then;
+    // setTaskItems(data);
+    console.log(data);
+    firestore()
+      .collection('Users')
+      .get()
+      .then(querySnapshot => {
+        // console.log('Total users: ', querySnapshot.size);
+        const data = [];
+        querySnapshot.forEach(documentSnapshot => {
+          console.log(documentSnapshot.data());
+        });
+      });
+  }, []);
+  useEffect(() => {
+    // setData();
+    // async function setData() {
+    const response = {
+      tasks: taskItems,
+    };
+    firestore().collection('Users').doc(ID).set(response);
+    // }
+  }, [taskItems]);
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <KeyboardAvoidingView
       style={styles.container}
       behavior="height"
       enabled={false}>
-      <Modal
+       <Modal
         animationType="fade"
         transparent={true}
         visible={modalVisible}
@@ -52,7 +80,9 @@ const Dashboard = ({navigation}) => {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <View style={{flex: 0.05}}>
-              <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
+              <TouchableOpacity
+                style={{marginStart: '2%'}}
+                onPress={() => setModalVisible(!modalVisible)}>
                 <Entypo name={'cross'} size={35} color={'black'} />
               </TouchableOpacity>
             </View>
@@ -103,18 +133,18 @@ const Dashboard = ({navigation}) => {
                 onPress={() => navigation.navigate('VideoResources')}>
                 <View
                   style={{
-                    height: 40,
+                    height: 43,
                     width: 220,
                     backgroundColor: '#c0cdde',
                     marginHorizontal: '10%',
-                    marginTop: '5%',
+                    marginTop: '8%',
                     borderRadius: 10,
                   }}>
                   <Text
                     style={{
                       fontSize: 14,
                       fontWeight: '600',
-                      marginStart: '5%',
+                      marginStart: '8%',
                     }}>
                     Video Resources
                   </Text>
@@ -127,11 +157,11 @@ const Dashboard = ({navigation}) => {
                 onPress={() => navigation.navigate('BookResources')}>
                 <View
                   style={{
-                    height: 40,
+                    height: 43,
                     width: 220,
                     backgroundColor: '#c0cdde',
                     marginHorizontal: '10%',
-                    marginTop: '5%',
+                    marginTop: '8%',
                     borderRadius: 10,
                   }}>
                   <Text
@@ -150,11 +180,11 @@ const Dashboard = ({navigation}) => {
               <TouchableOpacity onPress={() => navigation.navigate('Roadmaps')}>
                 <View
                   style={{
-                    height: 40,
+                    height: 43,
                     width: 220,
                     backgroundColor: '#c0cdde',
                     marginHorizontal: '10%',
-                    marginTop: '5%',
+                    marginTop: '8%',
                     borderRadius: 10,
                   }}>
                   <Text
@@ -173,11 +203,11 @@ const Dashboard = ({navigation}) => {
               <TouchableOpacity onPress={() => navigation.navigate('Cheat')}>
                 <View
                   style={{
-                    height: 40,
+                    height: 43,
                     width: 220,
                     backgroundColor: '#c0cdde',
                     marginHorizontal: '10%',
-                    marginTop: '5%',
+                    marginTop: '8%',
                     borderRadius: 10,
                   }}>
                   <Text
@@ -193,12 +223,6 @@ const Dashboard = ({navigation}) => {
                   </Text>
                 </View>
               </TouchableOpacity>
-            </View>
-            <View
-              style={{
-                flex: 0.1,
-                // backgroundColor: 'blue',
-              }}>
               <TouchableOpacity
                 onPress={async () => {
                   await Auth().signOut();
@@ -264,7 +288,7 @@ const Dashboard = ({navigation}) => {
               marginStart: '5%',
               marginBottom: '5%',
             }}>
-            Hi, Kate
+            Hi, there
           </Text>
         </View>
         <View

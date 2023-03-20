@@ -1,26 +1,43 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
+import {Linking} from 'react-native';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 interface propTypes {
   songname: string;
   imageUrl: string;
+  photoUrl: string;
   navigation: any;
   poet: string;
 }
 
 const Book = (props: propTypes) => {
   return (
-    <View
+    <TouchableOpacity
       style={{
         backgroundColor: '#cddef8',
         borderRadius: 13,
-        height: 80,
+        height: 235,
         alignItems: 'center',
         // justifyContent: 'center',
-      }}>
+      }}
+      onPress={() => Linking.openURL(props.imageUrl)}>
       <View
         style={{
-          height: '65%',
+          height: '80%',
+          width: '98%',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <Image
+          source={{
+            uri: props.photoUrl,
+          }}
+          style={{width: '98%', height: '98%', borderRadius: 5}}
+        />
+      </View>
+      <View
+        style={{
+          height: '20%',
           width: '98%',
           backgroundColor: '#458be7',
           justifyContent: 'center',
@@ -33,7 +50,7 @@ const Book = (props: propTypes) => {
         </Text>
       </View>
       <Text style={{color: 'gray'}}>{props.poet}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
