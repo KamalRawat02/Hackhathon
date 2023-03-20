@@ -58,7 +58,7 @@ const Profile = ({navigation}) => {
       </Text>
       <View
         style={{
-          flex: 0.7,
+          flex: 0.9,
           backgroundColor: 'white',
           width: '90%',
           borderRadius: 10,
