@@ -51,12 +51,14 @@ const Profile = () => {
   };
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text style={{color:'black',fontSize:30,fontWeight:'600'}}>
-        Profile
-      </Text>
+      <View style={{flex: 0.1}}>
+        <Text style={{color: 'black', fontSize: 30, fontWeight: '600'}}>
+          Profile
+        </Text>
+      </View>
       <View
         style={{
-          flex: 0.7,
+          flex: 0.9,
           backgroundColor: 'white',
           width: '90%',
           borderRadius: 10,
@@ -133,7 +135,9 @@ const Profile = () => {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <Text style={{color: 'white',fontWeight:'600',fontSize:17}}>Submit</Text>
+            <Text style={{color: 'white', fontWeight: '600', fontSize: 17}}>
+              Submit
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
